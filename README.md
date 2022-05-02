@@ -20,9 +20,11 @@
 
 - **`공부자료 추천`**  
 
-- **`개인별 통계`**   
+- **`개인별 통계`**     
 
 
+
+<br /> 
 
 ## Team Member 
 
@@ -33,12 +35,13 @@
 |[@zzi](https://github.com/99-zziy)|[@pgrgrgrgr](https://github.com/pgrgrgrgr)|[@wonho](https://github.com/wonho1401)|[@rkdgml3577](https://github.com/rkdgml3577)|
 
 
----
 
 <br />
 
 ## 📚 Tech Stack
 <img width="691" alt="스크린샷 2022-05-02 오후 4 06 19" src="https://user-images.githubusercontent.com/62633444/166197067-b9fb74d2-2d3d-470e-8fb3-39d1fa422476.png">
+
+
 
 ## 📍 Commit Convention
 |**Type**|설명|
@@ -53,6 +56,7 @@
 |**Set**   | 세팅 관련 작업  |
 |**Test**  |  테스트 관련 작업  |
 
+<br />
 
 ## 🐾 Branch Strategy
 
@@ -93,6 +97,7 @@
 > 3. 다 같이 보는 자리에서 합칠 수 있도록 하기
 
 </details>
+<br />
 
 ## 🗂 Folder Architecture
 > 아직 미정
