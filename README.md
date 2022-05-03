@@ -39,8 +39,6 @@
 <br />
 
 ## 📚 Tech Stack
-<img width="691" alt="스크린샷 2022-05-02 오후 4 06 19" src="https://user-images.githubusercontent.com/62633444/166197067-b9fb74d2-2d3d-470e-8fb3-39d1fa422476.png">
-
 
 
 ## 📍 Commit Convention
