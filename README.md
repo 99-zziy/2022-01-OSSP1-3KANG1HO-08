@@ -103,5 +103,12 @@
 <br />
 
 ## 🗂 Folder Architecture
-> 아직 미정
+### - FE
+ **|-- comonents  => 공통 컴포넌트 관리 <br />
+   |-- modules => 리덕스 관련 모듈들 <br />
+   |-- hooks => 공통 hooks 관리 <br />
+   |-- pages  => router 페이지 관리 <br />
+   |-- utils => util 파일 관리 <br />
+   |-- api => api 목록들  <br />
+   |-- assets => 프로젝트에 쓸 font, image 등 <br />**
 
