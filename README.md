@@ -38,6 +38,8 @@
 
 ## 📚 Tech Stack
 - **React**
+- **Redux**
+- **styled-components**
 - **Express**
 - **Neo4j**
 - **MongoDB**
