@@ -37,6 +37,13 @@
 <br />
 
 ## 📚 Tech Stack
+- **React**
+- **Express**
+- **Neo4j**
+- **MongoDB**
+
+
+<br />
 
 
 ## 📍 Commit Convention
