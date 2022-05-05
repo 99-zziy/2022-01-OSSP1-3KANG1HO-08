@@ -112,5 +112,6 @@
    |-- pages  => router 페이지 관리 <br />
    |-- utils => util 파일 관리 <br />
    |-- api => api 목록들  <br />
+   |-- constants => 상수들(매직넘버)  <br />
    |-- assets => 프로젝트에 쓸 font, image 등 <br />**
 
