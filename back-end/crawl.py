@@ -9,6 +9,9 @@ from selenium.webdriver.common.keys import Keys
 # exceptions
 from selenium.common.exceptions import NoSuchElementException
 
+# parse
+from parser import parse_context
+
 browser = webdriver.Chrome(ChromeDriverManager().install())
 browser.get("http://www.yes24.com/Main/default.aspx")
 
@@ -42,18 +45,19 @@ books = books.find_elements_by_class_name("gd_name")
 length = len(books)
 
 for numofbooks in range(length):
+  time.sleep(2)
   books = browser.find_element_by_id("yesSchList")
   books = books.find_elements_by_class_name("gd_name")
 
   books[numofbooks].click()
   try:
+    time.sleep(2)
     contents = browser.find_element_by_id("infoset_toc")
     contents = contents.find_element_by_class_name("infoWrap_txt")
-    contents_list.append(contents.text)
+    contents_list.append([contents.text])
     browser.back()
   except NoSuchElementException:
     browser.back()
-  time.sleep(2)
   
   # if(page % 10 == 0):
   #   nextPageBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[10]")
@@ -63,6 +67,12 @@ for numofbooks in range(length):
   #   nextBtn.click()
   # time.sleep(2)
 
-print(contents_list)
+# parse contexts by frequency
+contents = []
+for c in contents_list:
+  contents.append(parse_context(c[0]))
+
+# set keywords
+contents = list(set(contents[0]))
 
 browser.close()
