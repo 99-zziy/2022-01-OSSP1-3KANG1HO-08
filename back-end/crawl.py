@@ -59,11 +59,12 @@ for numofbooks in range(length):
   except NoSuchElementException:
     browser.back()
   
+
   # if(page % 10 == 0):
   #   nextPageBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[10]")
   #   nextPageBtn.click()
   # else:
-  #   nextBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[2]")
+  #   nextBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[page]")
   #   nextBtn.click()
   # time.sleep(2)
 
