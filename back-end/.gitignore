@@ -1,1 +1,3 @@
 node_modules/
+chromedriver.exe
+__pycache__/

@@ -14,7 +14,9 @@
 
 ## ✨ Main Feat
 
-- **`회원가입 & 로그인`**   
+- **`회원가입 & 로그인`**
+![LAON  회원가입 페이지](https://user-images.githubusercontent.com/59119468/167071531-8c951a4e-6015-4f9d-b7e3-86fb953ba074.png)
+![LAON  로그인 페이지](https://user-images.githubusercontent.com/59119468/167071538-5d723bae-e853-473d-b695-c443da81332c.png)
 
 - **`글 업로드 & 좋아요`**   
 
@@ -37,6 +39,15 @@
 <br />
 
 ## 📚 Tech Stack
+- **React**
+- **Redux**
+- **styled-components**
+- **Express**
+- **Neo4j**
+- **MongoDB**
+
+
+<br />
 
 
 ## 📍 Commit Convention
@@ -96,5 +107,13 @@
 <br />
 
 ## 🗂 Folder Architecture
-> 아직 미정
+### - FE
+ **|-- comonents  => 공통 컴포넌트 관리 <br />
+   |-- store => 리덕스 관련 모듈들 <br />
+   |-- hooks => 공통 hooks 관리 <br />
+   |-- pages  => router 페이지 관리 <br />
+   |-- utils => util 파일 관리 <br />
+   |-- api => api 목록들  <br />
+   |-- constants => 상수(매직넘버)  <br />
+   |-- assets => 프로젝트에 쓸 font, image 등 <br />**
 
