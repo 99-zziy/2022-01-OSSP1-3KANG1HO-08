@@ -36,20 +36,20 @@ contents_list = []
 # # progress by number of pages
 # for numofpages in range(pages):
 #   # check current page number, go to next page if page % 10 == 0
-#   page = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/strong")
-#   page = int(page.text)
+  # page = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/strong")
+  # page = int(page.text)
 
 # get names of books, crawl one by one
 books = browser.find_element_by_id("yesSchList")
 books = books.find_elements_by_class_name("gd_name")
 length = len(books)
 
-for numofbooks in range(length):
-  time.sleep(2)
-  books = browser.find_element_by_id("yesSchList")
-  books = books.find_elements_by_class_name("gd_name")
 
-  books[numofbooks].click()
+
+for numofbooks in range(2):
+  time.sleep(2)
+  book = browser.find_element_by_xpath("//*[@id='yesSchList']/li[{}]/div/div[2]/div[2]/a[1]".format(numofbooks+1))
+  book.click()
   try:
     time.sleep(2)
     contents = browser.find_element_by_id("infoset_toc")
@@ -64,16 +64,21 @@ for numofbooks in range(length):
   #   nextPageBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[10]")
   #   nextPageBtn.click()
   # else:
-  #   nextBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[page]")
+  #   nextBtn = browser.find_element_by_xpath("//*[@id='goodsListWrap']/div[4]/div/a[{}]".format(page))
   #   nextBtn.click()
   # time.sleep(2)
 
 # parse contexts by frequency
-contents = []
+org_contents = []
 for c in contents_list:
-  contents.append(parse_context(c[0]))
+  org_contents.append(parse_context(c[0]))
 
 # set keywords
-contents = list(set(contents[0]))
+contents = []
+for i in range(len(org_contents)):
+  org_contents[i] = list(set(org_contents[i]))
+for e in org_contents:
+  contents += e
 
 browser.close()
+
