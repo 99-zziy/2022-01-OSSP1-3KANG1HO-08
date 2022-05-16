@@ -7,7 +7,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 70px;
+  padding: 40px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
