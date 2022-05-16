@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, Suspense } from "react";
 import { handleLogin, initialState, user } from "../store/user";
 
 function Home() {
@@ -7,11 +7,7 @@ function Home() {
   console.log(state);
   // dispatch(handleLogin(true));
 
-  return (
-    <div>
-      <p>Home</p>
-    </div>
-  );
+  return <p>Home</p>;
 }
 
 export default Home;
