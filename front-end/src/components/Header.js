@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/img/logo.png";
 import profile from "../assets/icon/default_profile.png";
+import search from "../assets/icon/search.png";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { PrimaryColor } from "../assets/color/color";
@@ -16,12 +17,19 @@ const Logo = styled.img`
 
 const LoginHeaderContainer = styled.div`
   display: flex;
-  width: 160px;
+  width: 380px;
   justify-content: space-between;
   align-items: center;
 `;
 
-const LoginButton = styled.button`
+const LogoutHeaderContainer = styled.div`
+  display: flex;
+  width: 330px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Button = styled.button`
   width: 100px;
   border: none;
   color: white;
@@ -41,6 +49,28 @@ const ProfileButton = styled.img`
   margin: auto 0;
 `;
 
+const SearchBar = styled.div`
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  justify-content: space-around;
+`;
+
+const SearchInput = styled.input`
+  width: 140px;
+  height: 30px;
+  border: none;
+  outline: none;
+`;
+
+const SearchIcon = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
 function Header() {
   const user = useSelector((state) => state.persistReducer.user);
   const isLogin = user.isLogin;
@@ -50,11 +80,21 @@ function Header() {
       <Logo src={logo}></Logo>
       {isLogin ? (
         <LoginHeaderContainer>
-          <LoginButton>{"새 글 작성"}</LoginButton>
+          <SearchBar>
+            <SearchInput></SearchInput>
+            <SearchIcon src={search}></SearchIcon>
+          </SearchBar>
+          <Button>{"새 글 작성"}</Button>
           <ProfileButton src={profile}></ProfileButton>
         </LoginHeaderContainer>
       ) : (
-        <LoginButton>{"로그인"}</LoginButton>
+        <LogoutHeaderContainer>
+          <SearchBar>
+            <SearchInput></SearchInput>
+            <SearchIcon src={search}></SearchIcon>
+          </SearchBar>
+          <Button>{"로그인"}</Button>
+        </LogoutHeaderContainer>
       )}
     </HeaderContainer>
   );
