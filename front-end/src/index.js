@@ -4,13 +4,28 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "../src/store/index";
+import { createLogger } from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
+import persistReducer from "./store/index";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+
+const logger = createLogger();
+
+const store = configureStore({
+  reducer: { persistReducer },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
+
+const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
