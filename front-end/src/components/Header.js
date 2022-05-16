@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../assets/img/logo.png";
+import profile from "../assets/icon/default_profile.png";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { PrimaryColor } from "../assets/color/color";
 
 const HeaderContainer = styled.div`
@@ -10,6 +12,13 @@ const HeaderContainer = styled.div`
 
 const Logo = styled.img`
   width: 200px;
+`;
+
+const LoginHeaderContainer = styled.div`
+  display: flex;
+  width: 160px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const LoginButton = styled.button`
@@ -26,11 +35,27 @@ const LoginButton = styled.button`
   margin: auto 0;
 `;
 
+const ProfileButton = styled.img`
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+`;
+
 function Header() {
+  const user = useSelector((state) => state.persistReducer.user);
+  const isLogin = user.isLogin;
+
   return (
     <HeaderContainer>
       <Logo src={logo}></Logo>
-      <LoginButton>{"로그인"}</LoginButton>
+      {isLogin ? (
+        <LoginHeaderContainer>
+          <LoginButton>{"새 글 작성"}</LoginButton>
+          <ProfileButton src={profile}></ProfileButton>
+        </LoginHeaderContainer>
+      ) : (
+        <LoginButton>{"로그인"}</LoginButton>
+      )}
     </HeaderContainer>
   );
 }
