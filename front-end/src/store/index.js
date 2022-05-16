@@ -1,12 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { user } from "../store/user";
-import { createLogger } from "redux-logger";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
 
-const logger = createLogger();
+//local storage 불러오기
+import storage from "redux-persist/lib/storage";
 
-export const store = configureStore({
-  reducer: {
-    user,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+//persist 설정
+const persistConfig = {
+  key: "root",
+  storage, // localStorage
+};
+
+const rootReducer = combineReducers({
+  user,
 });
+
+// persistedReducer 생성
+export default persistReducer(persistConfig, rootReducer);

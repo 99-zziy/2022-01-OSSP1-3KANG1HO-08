@@ -1,16 +1,24 @@
-import React, { useReducer } from "react";
-import { handleLogin, initialState, user } from "../store/user";
+import React from "react";
+import styled from "styled-components";
+import FeedPreview from "../components/FeedPreview";
+
+const FeedPreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  justify-content: center;
+`;
 
 function Home() {
-  const [state, dispatch] = useReducer(user, initialState);
-
-  console.log(state);
-  // dispatch(handleLogin(true));
-
   return (
-    <div>
-      <p>Home</p>
-    </div>
+    <FeedPreviewContainer>
+      <FeedPreview></FeedPreview>
+      <FeedPreview></FeedPreview>
+      <FeedPreview></FeedPreview>
+      <FeedPreview></FeedPreview>
+      <FeedPreview></FeedPreview>
+      <FeedPreview></FeedPreview>
+    </FeedPreviewContainer>
   );
 }
 
