@@ -74,7 +74,7 @@ const VeriPeri = styled.a`
   font-size: large;
 `;
 
-function LoginPage() {
+function LoginPage(props) {
   const dispatch = useDispatch();
   const [formErrorMessage, setFormErrorMessage] = useState("");
   return (
@@ -102,6 +102,7 @@ function LoginPage() {
             .then((response) => {
               if (response.payload.isLogin) {
                 window.localStorage.setItem("userId", response.payload.userId);
+                props.history.push("/");
               } else {
                 setFormErrorMessage("아이디 혹은 비밀번호를 확인해주세요.");
               }
@@ -179,11 +180,11 @@ function LoginPage() {
                   <label>
                     <p
                       style={{
-                        color: "#ff0000bf",
+                        color: "#6667ab",
                         fontSize: "0.7rem",
                         border: "1px solid",
                         padding: "1rem",
-                        borderRadius: "10px",
+                        borderRadius: "4px",
                       }}
                     >
                       {formErrorMessage}
