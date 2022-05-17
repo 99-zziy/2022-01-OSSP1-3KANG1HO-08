@@ -85,7 +85,7 @@ function LoginPage(props) {
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string()
-          .email("이메일이 올바르지 않습니다.")
+          .email("이메일 형식이 올바르지 않습니다.")
           .required("이메일을 입력해주세요."),
         password: Yup.string()
           .min(6, "최소 6자리 이상 입력해주세요.")
@@ -96,6 +96,7 @@ function LoginPage(props) {
           let dataToSumbit = {
             email: values.email,
             password: values.password,
+
           };
 
           dispatch(handleLogin(dataToSumbit))

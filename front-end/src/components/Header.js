@@ -10,7 +10,8 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  margin: 0;
+  margin: 10px 5px;
+  padding: 0 20px;
 `;
 
 const Logo = styled.img`
