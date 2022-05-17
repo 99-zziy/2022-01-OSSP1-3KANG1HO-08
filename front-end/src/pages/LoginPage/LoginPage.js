@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { PrimaryColor } from "../../assets/color/color";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import { handleLogin } from "../../store/user";
 
 const Container = styled.div`
   display: flex;
@@ -27,6 +31,11 @@ const Sub = styled.div`
   margin-bottom: 10px;
 `;
 
+const InputContainer = styled.div`
+  margin-bottom: 20px;
+  font-weight: 700;
+`;
+
 const Input = styled.input`
   width: 300px;
   display: inline-block;
@@ -50,7 +59,7 @@ const LoginButton = styled.button`
   margin: auto 0;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,34 +70,142 @@ const Form = styled.div`
 const VeriPeri = styled.a`
   color: #6667ab;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: large;
 `;
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   return (
-    <div>
-      <Container>
-        <Title>로그인</Title>
-        <Sub>
-          또는 <VeriPeri href="/register"> 회원 가입</VeriPeri>
-        </Sub>
-        <Form>
-          <Input
-            type="text"
-            name="id"
-            placeholder="아이디를 입력하세요"
-          ></Input>
-          <p />
-          <Input
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력하세요"
-          ></Input>
-          <p />
-          <LoginButton>로그인</LoginButton>
-        </Form>
-      </Container>
-    </div>
+    <Formik
+      initialValues={{
+        email: "",
+        password: "",
+      }}
+      validationSchema={Yup.object().shape({
+        email: Yup.string()
+          .email("이메일이 올바르지 않습니다.")
+          .required("이메일을 입력해주세요."),
+        password: Yup.string()
+          .min(6, "최소 6자리 이상 입력해주세요.")
+          .required("비밀번호를 입력해주세요"),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          let dataToSumbit = {
+            email: values.email,
+            password: values.password,
+          };
+
+          dispatch(handleLogin(dataToSumbit))
+            .then((response) => {
+              if (response.payload.isLogin) {
+                window.localStorage.setItem("userId", response.payload.userId);
+              } else {
+                setFormErrorMessage("아이디 혹은 비밀번호를 확인해주세요.");
+              }
+            })
+            .catch((err) => {
+              setFormErrorMessage("아이디 혹은 비밀번호를 확인해주세요.");
+              setTimeout(() => {
+                setFormErrorMessage("");
+              }, 3000);
+            });
+          setSubmitting(false);
+        }, 500);
+      }}
+    >
+      {(props) => {
+        const {
+          values,
+          touched,
+          errors,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        } = props;
+        return (
+          <div>
+            <Container>
+              <Title>로그인</Title>
+              <Sub>
+                또는 <VeriPeri href="/signup"> 회원 가입</VeriPeri>
+              </Sub>
+              <Form onSubmit={handleSubmit}>
+                <InputContainer>
+                  이메일
+                  <p />
+                  <Input
+                    required
+                    type="text"
+                    id="email"
+                    placeholder="이메일을 입력하세요"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.email && touched.email
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.email && touched.email && (
+                    <div className="input-feedback">{errors.email}</div>
+                  )}
+                </InputContainer>
+                <InputContainer>
+                  비밀번호
+                  <p />
+                  <Input
+                    required
+                    id="password"
+                    type="password"
+                    placeholder="비밀번호를 입력하세요"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.passwrod && touched.passwrod
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.password && touched.password && (
+                    <div className="input-feedback">{errors.password}</div>
+                  )}
+                </InputContainer>
+                {formErrorMessage && (
+                  <label>
+                    <p
+                      style={{
+                        color: "#ff0000bf",
+                        fontSize: "0.7rem",
+                        border: "1px solid",
+                        padding: "1rem",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      {formErrorMessage}
+                    </p>
+                  </label>
+                )}
+                <p />
+                <LoginButton
+                  onClick={handleSubmit}
+                  htmlType="submit"
+                  className="login-form-button"
+                  type="primary"
+                  disabled={isSubmitting}
+                >
+                  로그인
+                </LoginButton>
+              </Form>
+            </Container>
+          </div>
+        );
+      }}
+    </Formik>
   );
 }
 
