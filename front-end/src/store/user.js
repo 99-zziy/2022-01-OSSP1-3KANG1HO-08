@@ -9,8 +9,11 @@ export const LOGOUT = "user/LOGOUT";
 /* 액션 생성함수 만들기 */
 export function handleLogin(dataToSumbit) {
   const request = axios
-    .post(`/user/login`, dataToSumbit)
-    .then((response) => response.data);
+    .post(`${process.env.REACT_APP_SERVER_URL}/users/login`, dataToSumbit)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
   return {
     type: LOGIN,
     payload: request,
@@ -19,7 +22,7 @@ export function handleLogin(dataToSumbit) {
 
 export function registerUser(dataToSumbit) {
   const request = axios
-    .post(`/user/signup`, dataToSumbit)
+    .post(`${process.env.REACT_APP_SERVER_URL}/users/signup`, dataToSumbit)
     .then((response) => response.data);
   return {
     type: SIGNUP,
@@ -37,7 +40,9 @@ export function registerUser(dataToSumbit) {
 // }
 
 export function logoutUser() {
-  const request = axios.get(`user/logout`).then((response) => response.data);
+  const request = axios
+    .get(`${process.env.REACT_APP_SERVER_URL}/users/logout`)
+    .then((response) => response.data);
 
   return {
     type: LOGOUT,
