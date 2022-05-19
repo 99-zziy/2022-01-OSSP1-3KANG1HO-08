@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { handleLogin } from "../../store/user";
+import { Login } from "../../api/authApi";
 
 const Container = styled.div`
   display: flex;
@@ -96,24 +97,17 @@ function LoginPage(props) {
           let dataToSumbit = {
             email: values.email,
             password: values.password,
-
           };
-
-          dispatch(handleLogin(dataToSumbit))
-            .then((response) => {
-              if (response.payload.isLogin) {
-                window.localStorage.setItem("userId", response.payload.userId);
-                props.history.push("/");
-              } else {
-                setFormErrorMessage("아이디 혹은 비밀번호를 확인해주세요.");
-              }
-            })
-            .catch((err) => {
-              setFormErrorMessage("아이디 혹은 비밀번호를 확인해주세요.");
-              setTimeout(() => {
-                setFormErrorMessage("");
-              }, 3000);
-            });
+          Login(dataToSumbit).then((res) => {
+            console.log(res);
+            if (!res.loginSuccess) setFormErrorMessage(res.message);
+            dispatch(
+              handleLogin({
+                userId: res.userId,
+                isLogin: true,
+              })
+            );
+          });
           setSubmitting(false);
         }, 500);
       }}
