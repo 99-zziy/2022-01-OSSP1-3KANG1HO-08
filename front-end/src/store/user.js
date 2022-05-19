@@ -7,16 +7,10 @@ export const SIGNUP = "user/SIGNUP";
 export const LOGOUT = "user/LOGOUT";
 
 /* 액션 생성함수 만들기 */
-export function handleLogin(dataToSumbit) {
-  const request = axios
-    .post(`${process.env.REACT_APP_SERVER_URL}/users/login`, dataToSumbit)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+export function handleLogin(payload) {
   return {
     type: LOGIN,
-    payload: request,
+    payload,
   };
 }
 
