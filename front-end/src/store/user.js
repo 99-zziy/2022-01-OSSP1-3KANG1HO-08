@@ -3,7 +3,7 @@ import axios from "axios";
 /* 액션 타입 만들기 */
 export const LOGIN = "user/LOGIN";
 export const SIGNUP = "user/SIGNUP";
-// export const AUTH = "uesr/AUTH";
+export const AUTH = "user/AUTH";
 export const LOGOUT = "user/LOGOUT";
 
 /* 액션 생성함수 만들기 */
@@ -14,24 +14,18 @@ export function handleLogin(payload) {
   };
 }
 
-export function registerUser(dataToSumbit) {
-  const request = axios
-    .post(`${process.env.REACT_APP_SERVER_URL}/users/signup`, dataToSumbit)
-    .then((response) => response.data);
+export function registerUser(payload) {
   return {
     type: SIGNUP,
-    payload: request,
+    payload,
   };
 }
 
-// export function auth() {
-//   const request = axios.get(`user/auth`).then((response) => response.data);
-
-//   return {
-//     type: AUTH,
-//     payload: request,
-//   };
-// }
+export function auth() {
+  return {
+    type: AUTH,
+  };
+}
 
 export function logoutUser() {
   const request = axios

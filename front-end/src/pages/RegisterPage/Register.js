@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/user";
+import { Signup } from "../../api/authApi";
 
 const Container = styled.div`
   display: flex;
@@ -56,6 +57,11 @@ const Button = styled.button`
   margin: auto 0;
 `;
 
+const TextDecoration = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 const Form = styled.form`
   display: flex;
   justify-content: center;
@@ -90,13 +96,19 @@ function Register(props) {
             email: values.email,
             password: values.password,
           };
-          dispatch(registerUser(dataToSumbit)).then((response) => {
-            if (response.payloda.success) {
-              props.history.push("/login");
-            } else {
-              alert(response.payload.err.errmsg);
-            }
+          Signup(dataToSumbit).then((res) => {
+            console.log(res);
+            // dispatch(registerUser({
+
+            // }))
           });
+          // dispatch(registerUser(dataToSumbit)).then((response) => {
+          //   if (response.payloda.success) {
+          //     props.history.push("/login");
+          //   } else {
+          //     alert(response.payload.err.errmsg);
+          //   }
+          // });
           setSubmitting(false);
         }, 500);
       }}
