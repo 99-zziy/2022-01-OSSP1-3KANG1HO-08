@@ -46,6 +46,11 @@ const Button = styled.button`
   margin: auto 0;
 `;
 
+const TextDecoration = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 const ProfileButton = styled.img`
   width: 40px;
   height: 40px;
@@ -77,7 +82,7 @@ const SearchIcon = styled.img`
 function Header() {
   const user = useSelector((state) => state.persistReducer.user);
   const isLogin = user.isLogin;
-
+  console.log(user, isLogin);
   return (
     <HeaderContainer>
       <Logo src={logo}></Logo>
@@ -96,7 +101,9 @@ function Header() {
             <SearchInput></SearchInput>
             <SearchIcon src={search}></SearchIcon>
           </SearchBar>
-          <Button>{"로그인"}</Button>
+          <Button>
+            <TextDecoration href="/login">{"로그인"}</TextDecoration>
+          </Button>
         </LogoutHeaderContainer>
       )}
     </HeaderContainer>
