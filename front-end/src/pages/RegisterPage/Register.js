@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/user";
 import { Signup } from "../../api/authApi";
+import { useNavigate } from "react-router";
 
 const Container = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ const Form = styled.form`
 
 function Register(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{
@@ -98,17 +100,21 @@ function Register(props) {
           };
           Signup(dataToSumbit).then((res) => {
             console.log(res);
-            // dispatch(registerUser({
-
-            // }))
+            if (res.success) {
+              alert("회원 가입이 완료되었습니다.");
+              navigate("/login");
+            }
+            // dispatch(
+            //   registerUser({
+            //     sign_up: res.success,
+            //   })
+            // );
+            // if (res.success) {
+            //   alert("회원 가입이 완료되었습니다.");
+            //   navigate("/login");
+            // }
           });
-          // dispatch(registerUser(dataToSumbit)).then((response) => {
-          //   if (response.payloda.success) {
-          //     props.history.push("/login");
-          //   } else {
-          //     alert(response.payload.err.errmsg);
-          //   }
-          // });
+
           setSubmitting(false);
         }, 500);
       }}
