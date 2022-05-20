@@ -45,11 +45,12 @@ export const initialState = {
 
 /* 리듀서 선언 */
 export function user(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case LOGIN:
       return {
         ...state,
-        isLogin: action.isLogin,
+        isLogin: action.payload.isLogin,
       };
     case SIGNUP:
       return {
