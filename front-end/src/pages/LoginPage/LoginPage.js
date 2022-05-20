@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { PrimaryColor } from "../../assets/color/color";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { handleLogin } from "../../store/user";
@@ -77,6 +78,7 @@ const VeriPeri = styled.a`
 
 function LoginPage(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formErrorMessage, setFormErrorMessage] = useState("");
   return (
     <Formik
@@ -101,12 +103,16 @@ function LoginPage(props) {
           Login(dataToSumbit).then((res) => {
             console.log(res);
             if (!res.loginSuccess) setFormErrorMessage(res.message);
+            // else {
+            //   navigate("/");
+            // }
             dispatch(
               handleLogin({
                 userId: res.userId,
                 isLogin: true,
               })
             );
+            if (res.loginSuccess) navigate("/");
           });
           setSubmitting(false);
         }, 500);
