@@ -4,6 +4,8 @@ import { lazy, Suspense } from "react";
 import Spinner from "../src/components/Spinner";
 
 const Home = lazy(() => import("./pages/Home"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/Register"));
 const Header = lazy(() => import("./components/Header"));
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
           <Header></Header>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<RegisterPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
