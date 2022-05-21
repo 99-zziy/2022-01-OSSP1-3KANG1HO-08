@@ -8,6 +8,12 @@
     const { User } = require("./models/User");
     const { auth } = require("./middleware/auth");
     
+    const methodOverride = require('method-override');
+    const { Feed } = require("./models/Feed");
+    const router = express.Router();
+
+
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     
@@ -82,8 +88,28 @@
       });
     });
     
-    app.post("/feeds")
 
+    app.post("/feeds",(req, res) => {
 
+      Feed.create(req.body, (err, post) => {
+        if(err) return res.json(err);
+        res.redirect('/index');
+        return res.status(200).json({
+          success:true,
+        });
+        
+      });
+    });
+
+    app.put("/feeds/:id", (req,res) =>{
+      req.body.updateAt = Date.now();
+      Feed.findOneAndUpdate({_id:req.params.id}, req.body, (err, post)=>{
+        if(err) return res.json(err);
+        res.redirect("/index/"+req.params.id);
+        return res.status(200).json({
+          success:true,
+        });
+      })
+    })
 
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
