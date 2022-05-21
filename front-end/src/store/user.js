@@ -1,5 +1,3 @@
-import axios from "axios";
-
 /* 액션 타입 만들기 */
 export const LOGIN = "user/LOGIN";
 export const SIGNUP = "user/SIGNUP";
@@ -21,20 +19,18 @@ export function registerUser(payload) {
   };
 }
 
-export function auth() {
+export function auth(payload) {
   return {
     type: AUTH,
+    payload,
   };
 }
 
-export function logoutUser() {
-  const request = axios
-    .get(`${process.env.REACT_APP_SERVER_URL}/users/logout`)
-    .then((response) => response.data);
-
+export function logoutUser(payload) {
+  console.log(payload);
   return {
     type: LOGOUT,
-    payload: request,
+    payload,
   };
 }
 
@@ -51,15 +47,22 @@ export function user(state = initialState, action) {
       return {
         ...state,
         isLogin: action.payload.isLogin,
+        userId: action.payload.userId,
       };
     case SIGNUP:
       return {
         ...state,
         signup: action.payload,
       };
+    case AUTH:
+      return {
+        ...state,
+        userData: action.payload,
+      };
     case LOGOUT:
       return {
         ...state,
+        isLogin: action.payload.isLogin,
       };
     default:
       return state;

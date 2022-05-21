@@ -22,3 +22,11 @@ export const Auth = async () => {
   );
   return response.data;
 };
+
+export const Logout = async () => {
+  const response = await api.get(
+    `${process.env.REACT_APP_SERVER_URL}/users/logout`
+  );
+  console.log(response);
+  return response.data;
+};
