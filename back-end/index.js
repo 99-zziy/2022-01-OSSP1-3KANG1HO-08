@@ -15,8 +15,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 mongoose
@@ -69,7 +69,7 @@ app.post("/users/login", async (req, res) => {
   });
 });
 
-app.get("/api/users/auth", auth, (req, res) => {
+app.get("/users/auth", auth, (req, res) => {
   // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 true라는 것.
   res.status(200).json({
     _id: req.user._id,
