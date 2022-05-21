@@ -14,6 +14,9 @@ const feedSchema = mongoose.Schema(
     },
     contents: {
         type: String,
+    },
+    tag: {
+      type: String
     }
 
   },

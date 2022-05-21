@@ -8,11 +8,11 @@
     const { User } = require("./models/User");
     const { auth } = require("./middleware/auth");
     
-    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(cookieParser());
+    app.use(bodyParser.urlencoded({ extended: true }));
     
-    const mongoose = require("mongoose");
+    app.use(cookieParser());
+    const mongoose = require("mongoose");  
     mongoose
         .connect('mongodb+srv://rkdgml:choi0730!A@laon.joias.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
         .then(() => console.log('MongoDB Connected...'))
@@ -35,6 +35,7 @@
     app.post("/users/login", (req, res) => {
       // 요청된 이메일을 데이터베이스에서 있는지 찾는다.
       User.findOne({ email: req.body.email }, (err, user) => {
+       
         if (!user) {
           return res.json({
             loginSuccess: false,
@@ -74,11 +75,15 @@
     });
     
     app.get("/users/logout", auth, (req, res) => {
-      console.log(req);
+      
       User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).send({ success: true });
       });
     });
     
+    app.post("/feeds")
+
+
+
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
