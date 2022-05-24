@@ -32,9 +32,7 @@ export const Logout = async () => {
 };
 
 export const WriteFeed = async () => {
-  const response = await api.post(
-    `${process.env.REACT_APP_SERVER_URL}/feeds/write`
-  );
+  const response = await api.post(`${process.env.REACT_APP_SERVER_URL}/feeds`);
   console.log(response);
   return response.data;
 };

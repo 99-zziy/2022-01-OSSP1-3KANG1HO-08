@@ -78,10 +78,10 @@ const Footer = styled.div``;
 
 function WriteFeed() {
   let editorState = EditorState.createEmpty();
-  const [description, setDescription] = useState(editorState);
+  const [contents, setcontents] = useState(editorState);
 
   const onEditorStateChange = (editorState) => {
-    setDescription(editorState);
+    setcontents(editorState);
   };
   const navigate = useNavigate();
   const editorToHtml = (editorState) => {
@@ -91,25 +91,26 @@ function WriteFeed() {
     <Formik
       initialValues={{
         title: "",
-        tags: "",
-        description: "",
+        tag: "",
+        contents: "",
       }}
       validationSchema={Yup.object().shape({
         title: Yup.string().required("제목은 필수 입력 항목입니다."),
-        tags: Yup.string().required("태그는 필수 입력 항목입니다."),
-        descroption: Yup.string().required("내용은 필수 입력 항목입니다."),
+        tag: Yup.string().required("태그는 필수 입력 항목입니다."),
+        contents: Yup.string().required("내용은 필수 입력 항목입니다."),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           let dataToSumbit = {
             title: values.title,
-            tags: values.tags,
-            description: values.description,
+            tag: values.tag,
+            contents: values.contents.value,
           };
           WriteFeed(dataToSumbit).then((res) => {
             console.log(res);
           });
-        });
+          setSubmitting(false);
+        }, 500);
       }}
     >
       {(props) => {
@@ -122,6 +123,7 @@ function WriteFeed() {
           handleBlur,
           handleSubmit,
         } = props;
+        // console.log(values);
         return (
           <div>
             <Container>
@@ -149,50 +151,50 @@ function WriteFeed() {
                   <Input
                     required
                     type="text"
-                    id="tags"
-                    value={values.tags}
+                    id="tag"
+                    value={values.tag}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="태그를 입력해주세요"
                     className={
-                      errors.tags && touched.tags
+                      errors.tag && touched.tag
                         ? "text-input error"
                         : "text-input"
                     }
                   />
-                  {errors.tags && touched.tags && (
-                    <div className="input-feedback">{errors.tags}</div>
+                  {errors.tag && touched.tag && (
+                    <div className="input-feedback">{errors.tag}</div>
                   )}
                 </InputContainer>
                 <EditorContainer>
                   <Editor
-                    editorState={description}
+                    editorState={contents}
                     toolbarClassName="toolbarClassName"
-                    toolbar={{
-                      list: { inDropdown: true },
-                      textAlign: { inDropdown: true },
-                      link: { inDropdown: true },
-                      history: { inDropdown: true },
-                    }}
-                    localization={{
-                      locale: "ko",
-                    }}
+                    // toolbar={{
+                    //   list: { inDropdown: true },
+                    //   textAlign: { inDropdown: true },
+                    //   link: { inDropdown: true },
+                    //   history: { inDropdown: true },
+                    // }}
+                    locale="ko"
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
-                    // value={values.description}
+                    // value={values.contents}
                     onEditorStateChange={onEditorStateChange}
                   />
                   <textarea
                     style={{ display: "none", overflowY: "scroll" }}
                     disabled
-                    ref={(val) => (values.description = val)}
+                    ref={(val) => (values.contents = val)}
                     value={draftToHtml(
-                      convertToRaw(description.getCurrentContent())
+                      convertToRaw(contents.getCurrentContent())
                     )}
-                  ></textarea>
+                  />
                 </EditorContainer>
                 <Button
                   onClick={handleSubmit}
+                  htmlType="submit"
+                  className="form-button"
                   type="primary"
                   disabled={isSubmitting}
                 >
@@ -201,7 +203,7 @@ function WriteFeed() {
               </Form>
             </Container>
             <Content
-              dangerouslySetInnerHTML={{ __html: editorToHtml(description) }}
+              dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
             />
           </div>
         );
