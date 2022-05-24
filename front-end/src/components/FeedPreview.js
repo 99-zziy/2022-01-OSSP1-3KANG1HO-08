@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import dummyImgae from "../assets/img/dummy.png";
 
 const FeedPreviewCard = styled.div`
   width: 20rem;
-  height: 22rem;
+  height: 18rem;
   background: #f8f9fa;
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 8%) 0px 4px 16px 0px;
@@ -17,22 +16,6 @@ const FeedPreviewCard = styled.div`
 `;
 
 const FeedPreviewMain = styled.div``;
-
-const Image = styled.img`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
 
 const TextContainer = styled.div`
   padding: 1rem;
@@ -55,7 +38,7 @@ const Content = styled.div`
   overflow-wrap: break-word;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 3.9375rem;
+  height: 8rem;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -81,9 +64,6 @@ function FeedPreview() {
   return (
     <FeedPreviewCard>
       <FeedPreviewMain>
-        <ImageContainer>
-          <Image src={dummyImgae}></Image>
-        </ImageContainer>
         <TextContainer>
           <Title>{"SSR CSR 차이점"}</Title>
           <Content>
