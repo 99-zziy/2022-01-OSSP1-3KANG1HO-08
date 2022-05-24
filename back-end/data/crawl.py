@@ -75,10 +75,10 @@ for c in contents_list:
 
 # set keywords
 contents = []
-for i in range(len(org_contents)):
-  org_contents[i] = list(set(org_contents[i]))
+
 for e in org_contents:
   contents += e
+print(sorted(contents))
 
 browser.close()
 
