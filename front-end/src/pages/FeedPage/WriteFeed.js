@@ -183,6 +183,7 @@ function WriteFeed() {
                     editorClassName="editorClassName"
                     // value={values.contents}
                     onEditorStateChange={onEditorStateChange}
+                    editorStyle={{ "max-height": "200px", height: "200px" }}
                   />
                   <textarea
                     style={{ display: "none", overflowY: "scroll" }}
