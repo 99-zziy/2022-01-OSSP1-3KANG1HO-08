@@ -23,7 +23,7 @@ const Logo = styled.img`
 
 const LoginHeaderContainer = styled.div`
   display: flex;
-  width: 380px;
+  width: 480px;
   justify-content: space-between;
   align-items: center;
 `;
