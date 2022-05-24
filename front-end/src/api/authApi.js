@@ -32,10 +32,10 @@ export const Logout = async () => {
 };
 
 export const Write = async (dataToSumbit) => {
-  const response = await api.post(
-    `${process.env.REACT_APP_SERVER_URL}/feeds`,
-    dataToSumbit
-  );
+  const response = await api.post(`${process.env.REACT_APP_SERVER_URL}/feeds`, {
+    ...dataToSumbit,
+    userFrom: localStorage.getItem("userId"),
+  });
   console.log(response);
   return response.data;
 };

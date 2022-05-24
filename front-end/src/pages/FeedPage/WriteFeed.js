@@ -64,17 +64,6 @@ const Button = styled.button`
   margin: 20px 0;
 `;
 
-const Content = styled.div`
-  position: relative;
-  border: 0.0625rem solid #d7e2eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  padding: 1.5rem;
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-`;
-
 function WriteFeed() {
   let editorState = EditorState.createEmpty();
   const [contents, setcontents] = useState(editorState);
