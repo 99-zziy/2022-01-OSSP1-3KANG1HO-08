@@ -3,7 +3,7 @@ from itertools import count
 from neo4j import GraphDatabase
 import pandas as pd
 
-dic_list = [{'A': {'a1': 32, 'a2': 15}}, {'B':{'b1': 45, 'b2': 91, 'b3': 11, 'b4': 19}}, {'C':{'c1': 21, 'c2': 33, 'c3': 45}}]
+dic_list = [{'A': {'a1': 32, 'a2': 15}}, {'B':{'b1': 45, 'b2': 91, 'b3': 11, 'b4': 19}}, {'C':{'c1': 21, 'c2': 33, 'c3': 45}}, {'D':{'d1': 21, 'd2': 33, 'd3': 45, 'd4': 9, 'd5': 11, 'd6': 12}}, {'E':{'e1': 21}}, {'F':{'f1': 21, 'f2': 33, 'f3': 45}}]
 
 for i in dic_list:
   for j in i.values():
