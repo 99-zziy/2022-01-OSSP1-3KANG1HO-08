@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { PrimaryColor } from "../../assets/color/color";
+import { Write } from "../../api/authApi";
 
 const Container = styled.div`
   display: flex;
@@ -106,10 +107,10 @@ function WriteFeed() {
             tag: values.tag,
             contents: values.contents.value,
           };
-          WriteFeed(dataToSumbit).then((res) => {
+          Write(dataToSumbit).then((res) => {
             console.log(res);
           });
-          navigate("/")
+          navigate("/");
           setSubmitting(false);
         }, 500);
       }}
