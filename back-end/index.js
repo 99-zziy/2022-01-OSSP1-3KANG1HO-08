@@ -8,6 +8,9 @@ const { User } = require("./models/User");
 const { auth } = require("./middleware/auth");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const methodOverride = require('method-override');
+const { Feed } = require("./models/Feed");
+const router = express.Router();
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -19,13 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+const mongoose = require("mongoose");  
 mongoose
-  .connect(
-    "mongodb+srv://rkdgml:choi0730!A@laon.joias.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  )
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
-
+    .connect('mongodb+srv://rkdgml:choi0730!A@laon.joias.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err))
+    
+    
 app.post("/users/signup", (req, res) => {
   // 회원 가입할 때 넣는 정보들을 user에서 가져오면
   // 그것들을 데이터베이스에 넣어준다.
@@ -38,6 +41,7 @@ app.post("/users/signup", (req, res) => {
     });
   });
 });
+
 
 app.post("/users/login", async (req, res) => {
   // 요청된 이메일을 데이터베이스에서 있는지 찾는다.
@@ -55,16 +59,74 @@ app.post("/users/login", async (req, res) => {
         loginSuccess: false,
         message: "비밀번호가 틀렸습니다.",
       });
+  }
+  // 비밀번호까지 일치하다면 토큰을 생성한다.
+  user.generateToken((err, user) => {
+    if (err) return res.status(400).send(err);
 
-    // 비밀번호까지 일치하다면 토큰을 생성한다.
-    user.generateToken((err, user) => {
-      if (err) return res.status(400).send(err);
+    // 토큰을 쿠키에 저장
+    res
+      .cookie("x_auth", user.token)
+      .status(200)
+      .json({ loginSuccess: true, userId: user._id });
+  });
+}
 
-      // 토큰을 쿠키에 저장
-      res
-        .cookie("x_auth", user.token)
-        .status(200)
-        .json({ loginSuccess: true, userId: user._id });
+    
+
+    app.post("/feeds",(req, res) => {
+
+      Feed.create(req.body, (err, post) => {
+        if(err) return res.json(err);
+        
+        return res.status(200).json({
+          success:true,
+        });
+        
+      });
+    });
+
+
+    app.get("/feeds/:id/edit", (req,res)=>{
+      Feed.findOne({_id:req.params.id},(err, Feed)=>{
+        if(err) return res.json(err);
+        res.render('index',{Feed:Feed});
+      })
+    })
+
+
+    app.put("/feeds/:id", (req,res) =>{
+      req.body.updateAt = Date.now();
+      Feed.findOneAndUpdate({_id:req.params.id}, req.body, (err, Feed)=>{
+        if(err) return res.json(err);
+       
+        return res.status(200).json({
+          success:true,
+        });
+      })
+    })
+
+    app.get('/feeds/:id', (req,res) => {
+      Feed.findOne({_id:req.params.id}, (err,feeds)=>{
+        if(err) return res.json(err);
+        return res.status(200).send({feeds : feeds})
+    
+      });
+    });
+    
+    app.delete('/feeds/:id', (req,res)=>{
+      Feed.deleteOne({_id:req.params.id}, (req,res)=>{
+        if(err) return res.json(err);
+      });
+    });
+
+    app.get('/feeds', (req,res)=>{
+      Feed.find({})
+      .sort('-createdAt')
+      .exec((err,feeds)=>{
+        if(err) return res.json(err);
+        return res.status(200).send({ feeds: feeds });
+      });
     });
   });
 });
