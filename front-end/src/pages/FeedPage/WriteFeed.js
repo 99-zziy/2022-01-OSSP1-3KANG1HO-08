@@ -75,8 +75,6 @@ const Content = styled.div`
   margin-bottom: 4rem;
 `;
 
-const Footer = styled.div``;
-
 function WriteFeed() {
   let editorState = EditorState.createEmpty();
   const [contents, setcontents] = useState(editorState);
@@ -85,9 +83,9 @@ function WriteFeed() {
     setcontents(editorState);
   };
   const navigate = useNavigate();
-  const editorToHtml = (editorState) => {
-    return draftToHtml(convertToRaw(editorState.getCurrentContent()));
-  };
+  // const editorToHtml = (editorState) => {
+  //   return draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  // };
   return (
     <Formik
       initialValues={{
@@ -205,9 +203,9 @@ function WriteFeed() {
                 </Button>
               </Form>
             </Container>
-            <Content
+            {/* <Content
               dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
-            />
+            /> */}
           </div>
         );
       }}
