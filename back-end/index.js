@@ -122,8 +122,9 @@
     })
 
     app.get('/feeds/:id', (req,res) => {
-      Feed.findOne({_id:req.params.id}, (err,post)=>{
+      Feed.findOne({_id:req.params.id}, (err,feeds)=>{
         if(err) return res.json(err);
+        return res.status(200).send({feeds : feeds})
     
       });
     });
@@ -137,8 +138,9 @@
     app.get('/feeds', (req,res)=>{
       Feed.find({})
       .sort('-createdAt')
-      .exec((err,posts)=>{
+      .exec((err,feeds)=>{
         if(err) return res.json(err);
+        return res.status(200).send({ feeds: feeds });
       });
     });
 
