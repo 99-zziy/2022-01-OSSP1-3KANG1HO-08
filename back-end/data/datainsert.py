@@ -16,7 +16,7 @@ def add_context(tx, title, tag, weight):
 
 def add_tag(tx):
   tx.run("MATCH (a:Tag) "
-  "UNWIND a.weight as w " 
+  "UNWIND a.weight as w "
   "UNWIND a.title as k "
   "MERGE (b:Context {title:k}) " 
   "MERGE (a)<-[r:Contain {weight:w}]-(b) ")
