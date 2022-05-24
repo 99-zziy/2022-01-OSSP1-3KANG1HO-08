@@ -22,10 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 mongoose
-  .connect('mongodb+srv://rkdgml:choi0730!A@laon.joias.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err))
-
+  .connect(
+    "mongodb+srv://rkdgml:choi0730!A@laon.joias.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  )
+  .then(() => console.log("MongoDB Connected..."))
+  .catch((err) => console.log(err));
 
 app.post("/users/signup", (req, res) => {
   // 회원 가입할 때 넣는 정보들을 user에서 가져오면
@@ -39,7 +40,6 @@ app.post("/users/signup", (req, res) => {
     });
   });
 });
-
 
 app.post("/users/login", async (req, res) => {
   // 요청된 이메일을 데이터베이스에서 있는지 찾는다.
@@ -62,65 +62,12 @@ app.post("/users/login", async (req, res) => {
     user.generateToken((err, user) => {
       if (err) return res.status(400).send(err);
 
-      res// 토큰을 쿠키에 저장
+      res // 토큰을 쿠키에 저장
         .cookie("x_auth", user.token)
         .status(200)
         .json({ loginSuccess: true, userId: user._id });
     });
   });
-});
-
-
-app.post("/feeds", (req, res) => {
-
-  Feed.create(req.body, (err, feeds) => {
-    if (err) return res.json(err);
-
-    return res.status(200).send({ feeds: feeds })
-
-  });
-});
-
-
-app.get("/feeds/:id/edit", (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, feed) => {
-    if (err) return res.json(err);
-    res.render('index', { feeds: feeds });
-  })
-})
-
-
-app.put("/feeds/:id", (req, res) => {
-  req.body.updateAt = Date.now();
-  Feed.findOneAndUpdate({ _id: req.params.id }, req.body, (err, feeds) => {
-    if (err) return res.json(err);
-
-    return res.status(200).send({ feeds: feeds })
-  })
-})
-
-app.get('/feeds/:id', (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, feeds) => {
-    if (err) return res.json(err);
-    return res.status(200).send({ feeds: feeds })
-
-  });
-});
-
-app.delete('/feeds/:id', (req, res) => {
-  Feed.deleteOne({ _id: req.params.id }, (req, res) => {
-    if (err) return res.json(err);
-    return res.status(200).send({ feeds: feeds })
-  });
-});
-
-app.get('/feeds', (req, res) => {
-  Feed.find({})
-    .sort('-createdAt')
-    .exec((err, feeds) => {
-      if (err) return res.json(err);
-      return res.status(200).send({ feeds: feeds });
-    });
 });
 
 app.get("/users/auth", auth, (req, res) => {
@@ -140,6 +87,54 @@ app.get("/users/logout", auth, (req, res) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({ success: true });
   });
+});
+
+
+app.post("/feeds", (req, res) => {
+  Feed.create(req.body, (err, feeds) => {
+    if (err) return res.json(err);
+
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds/:id/edit", (req, res) => {
+  Feed.findOne({ _id: req.params.id }, (err, feed) => {
+    if (err) return res.json(err);
+    res.render("index", { feeds: feeds });
+  });
+});
+
+app.put("/feeds/:id", (req, res) => {
+  req.body.updateAt = Date.now();
+  Feed.findOneAndUpdate({ _id: req.params.id }, req.body, (err, feeds) => {
+    if (err) return res.json(err);
+
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds/:id", (req, res) => {
+  Feed.findOne({ _id: req.params.id }, (err, feeds) => {
+    if (err) return res.json(err);
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.delete("/feeds/:id", (req, res) => {
+  Feed.deleteOne({ _id: req.params.id }, (req, res) => {
+    if (err) return res.json(err);
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds", (req, res) => {
+  Feed.find({})
+    .sort("-createdAt")
+    .exec((err, feeds) => {
+      if (err) return res.json(err);
+      return res.status(200).send({ feeds: feeds });
+    });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

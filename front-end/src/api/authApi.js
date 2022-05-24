@@ -30,3 +30,12 @@ export const Logout = async () => {
   console.log(response);
   return response.data;
 };
+
+export const Write = async (dataToSumbit) => {
+  const response = await api.post(
+    `${process.env.REACT_APP_SERVER_URL}/feeds`,
+    dataToSumbit
+  );
+  console.log(response);
+  return response.data;
+};
