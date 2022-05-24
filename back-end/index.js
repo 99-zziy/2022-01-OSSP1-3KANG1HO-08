@@ -7,13 +7,15 @@ const cookieParser = require("cookie-parser");
 const { User } = require("./models/User");
 const { auth } = require("./middleware/auth");
 const cors = require("cors");
-const { Feed } = require("./models/Feed");
 const mongoose = require("mongoose");
+const { Feed } = require("./models/Feed");
+const router = express.Router();
 
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,17 +38,6 @@ app.post("/users/signup", (req, res) => {
     return res.status(200).json({
       success: true,
     });
-  });
-});
-
-app.get("/users/auth", auth, (req, res) => {
-  // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 true라는 것.
-  res.status(200).json({
-    _id: req.user._id,
-    isAdmin: req.user.role === 0 ? false : true,
-    isAuth: true,
-    email: req.user.email,
-    name: req.user.name,
   });
 });
 
@@ -79,48 +70,25 @@ app.post("/users/login", async (req, res) => {
   });
 });
 
-app.get("/feeds/:id/edit", (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, Feed) => {
-    if (err) return res.json(err);
-    res.render("index", { Feed: Feed });
+app.get("/users/auth", auth, (req, res) => {
+  // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 true라는 것.
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
   });
 });
 
-app.put("/feeds/:id", (req, res) => {
-  req.body.updateAt = Date.now();
-  Feed.findOneAndUpdate({ _id: req.params.id }, req.body, (err, Feed) => {
-    if (err) return res.json(err);
-
-    return res.status(200).json({
-      success: true,
-    });
+app.get("/users/logout", auth, (req, res) => {
+  console.log(req);
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({ success: true });
   });
 });
 
-app.get("/feeds/:id", (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, feeds) => {
-    if (err) return res.json(err);
-    return res.status(200).send({ feeds: feeds });
-  });
-});
-
-app.delete("/feeds/:id", (req, res) => {
-  Feed.deleteOne({ _id: req.params.id }, (req, res) => {
-    if (err) return res.json(err);
-  });
-});
-
-app.get("/feeds", (req, res) => {
-  Feed.find({})
-    .sort("-createdAt")
-    .exec((err, feeds) => {
-      if (err) return res.json(err);
-      return res.status(200).send({ feeds: feeds });
-    });
-});
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-// ======= 기준으로 두개 나뉘어져있는데 저기서 둘중에 더 맞는거 선택해서 아닌거는 지우면됨
 
 app.post("/feeds", (req, res) => {
   Feed.create(req.body, (err, feeds) => {
@@ -167,25 +135,6 @@ app.get("/feeds", (req, res) => {
       if (err) return res.json(err);
       return res.status(200).send({ feeds: feeds });
     });
-});
-
-app.get("/users/auth", auth, (req, res) => {
-  // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 true라는 것.
-  res.status(200).json({
-    _id: req.user._id,
-    isAdmin: req.user.role === 0 ? false : true,
-    isAuth: true,
-    email: req.user.email,
-    name: req.user.name,
-  });
-});
-
-app.get("/users/logout", auth, (req, res) => {
-  console.log(req);
-  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).send({ success: true });
-  });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
