@@ -93,7 +93,7 @@
 
       Feed.create(req.body, (err, post) => {
         if(err) return res.json(err);
-        res.redirect('/index');
+        
         return res.status(200).json({
           success:true,
         });
@@ -101,15 +101,46 @@
       });
     });
 
+
+    app.get("/feeds/:id/edit", (req,res)=>{
+      Feed.findOne({_id:req.params.id},(err, Feed)=>{
+        if(err) return res.json(err);
+        res.render('index',{Feed:Feed});
+      })
+    })
+
+
     app.put("/feeds/:id", (req,res) =>{
       req.body.updateAt = Date.now();
-      Feed.findOneAndUpdate({_id:req.params.id}, req.body, (err, post)=>{
+      Feed.findOneAndUpdate({_id:req.params.id}, req.body, (err, Feed)=>{
         if(err) return res.json(err);
-        res.redirect("/index/"+req.params.id);
+       
         return res.status(200).json({
           success:true,
         });
       })
     })
+
+    app.get('/feeds/:id', (req,res) => {
+      Feed.findOne({_id:req.params.id}, (err,post)=>{
+        if(err) return res.json(err);
+    
+      });
+    });
+    
+    app.delete('/feeds/:id', (req,res)=>{
+      Feed.deleteOne({_id:req.params.id}, (req,res)=>{
+        if(err) return res.json(err);
+      });
+    });
+
+    app.get('/feeds', (req,res)=>{
+      Feed.find({})
+      .sort('-createdAt')
+      .exec((err,posts)=>{
+        if(err) return res.json(err);
+      });
+    });
+
 
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
