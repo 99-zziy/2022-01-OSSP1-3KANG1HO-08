@@ -15,13 +15,15 @@
 ## ✨ Main Feat
 
 - **`회원가입 & 로그인`**
-![LAON  회원가입 페이지](https://user-images.githubusercontent.com/59119468/167071531-8c951a4e-6015-4f9d-b7e3-86fb953ba074.png)
-![LAON  로그인 페이지](https://user-images.githubusercontent.com/59119468/167071538-5d723bae-e853-473d-b695-c443da81332c.png)
+<img src="https://user-images.githubusercontent.com/59119468/167071531-8c951a4e-6015-4f9d-b7e3-86fb953ba074.png" width="800" height="400"/>
+<img src="https://user-images.githubusercontent.com/59119468/167071538-5d723bae-e853-473d-b695-c443da81332c.png" width="800" height="400"/>
 
 - **`글 업로드 & 좋아요`**   
+<img src="https://user-images.githubusercontent.com/59119468/167635548-0e5a2669-c15f-4e38-88cd-16f0e1c855d0.png" width="800" height="400"/>
+<img src="https://user-images.githubusercontent.com/59119468/167635543-75d69e38-3ded-40fd-b205-99535909f907.png" width="800" height="400"/>
 
 - **`공부자료 추천`**  
-
+<img src="https://user-images.githubusercontent.com/59119468/167635537-36bfee73-649b-4ec1-8424-f2119ea2f49b.png" width="800" height="400"/>
 
 
 <br /> 
