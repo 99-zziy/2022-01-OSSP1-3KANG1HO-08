@@ -109,6 +109,7 @@ function WriteFeed() {
           WriteFeed(dataToSumbit).then((res) => {
             console.log(res);
           });
+          navigate("/")
           setSubmitting(false);
         }, 500);
       }}
@@ -127,7 +128,7 @@ function WriteFeed() {
         return (
           <div>
             <Container>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <InputContainer>
                   <Input
                     required
