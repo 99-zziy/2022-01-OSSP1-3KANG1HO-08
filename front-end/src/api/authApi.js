@@ -30,3 +30,11 @@ export const Logout = async () => {
   console.log(response);
   return response.data;
 };
+
+export const WriteFeed = async () => {
+  const response = await api.post(
+    `${process.env.REACT_APP_SERVER_URL}/feeds/write`
+  );
+  console.log(response);
+  return response.data;
+};
