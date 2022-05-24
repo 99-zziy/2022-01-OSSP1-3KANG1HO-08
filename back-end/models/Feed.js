@@ -22,6 +22,7 @@ const feedSchema = mongoose.Schema(
   { timestamps: true }
 );
 console.log(feedSchema);
+
 const Feed = mongoose.model("Feed", feedSchema);
 
 module.exports = { Feed };
