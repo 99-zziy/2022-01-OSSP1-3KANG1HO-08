@@ -21,7 +21,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/write" element={<WriteFeed />} />
-            <Route path="/feed" element={<Feed />} />
+            <Route path="/feed/:id" element={<Feed />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
