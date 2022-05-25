@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import dummyImgae from "../assets/img/dummy.png";
+import { PrimaryColor } from "../assets/color/color";
+import { useNavigate } from "react-router";
 
 const FeedPreviewCard = styled.div`
   width: 20rem;
-  height: 22rem;
+  height: 18rem;
   background: #f8f9fa;
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 8%) 0px 4px 16px 0px;
@@ -14,25 +15,10 @@ const FeedPreviewCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const FeedPreviewMain = styled.div``;
-
-const Image = styled.img`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
 
 const TextContainer = styled.div`
   padding: 1rem;
@@ -55,11 +41,13 @@ const Content = styled.div`
   overflow-wrap: break-word;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 3.9375rem;
+  height: 8rem;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #495057;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Date = styled.div`
@@ -71,31 +59,31 @@ const Date = styled.div`
 const FeedPreviewFooter = styled.div``;
 
 const Like = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   float: right;
   margin: 1rem;
+  color: ${PrimaryColor};
 `;
 
-function FeedPreview() {
+function FeedPreview({ id, title, content, date, likeCount }) {
+  const navigate = useNavigate();
+
+  const onFeedClick = () => {
+    navigate(`/feed/${id}`);
+  };
+
   // api 통신 코드 추가하면 실제 데이터 넣을 것, 지금은 더미 데이터
   return (
-    <FeedPreviewCard>
+    <FeedPreviewCard onClick={onFeedClick}>
       <FeedPreviewMain>
-        <ImageContainer>
-          <Image src={dummyImgae}></Image>
-        </ImageContainer>
         <TextContainer>
-          <Title>{"SSR CSR 차이점"}</Title>
-          <Content>
-            {
-              "새로운 페이지를 요청 할때 마다 전체 페이지가 다시 렌더링 된다. 화면에서 바뀌지 않아도 되는 부분도 계속해서 다시 렌더링되는 단점이 있기 때문에 곧 서버 부하 등의 문제를 일으킬 수 있다.또한 전체가 다시 렌더링 될때 화면의 깜빡이게 되므로 사용자에게 불편함을 줄 수 있다."
-            }
-          </Content>
-          <Date>{"3일전"}</Date>
+          <Title>{title}</Title>
+          <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
+          <Date>{date}</Date>
         </TextContainer>
       </FeedPreviewMain>
       <FeedPreviewFooter>
-        <Like>{"♥ 35"}</Like>
+        <Like>{`♥ ${likeCount}`}</Like>
       </FeedPreviewFooter>
     </FeedPreviewCard>
   );
