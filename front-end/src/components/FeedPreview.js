@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { PrimaryColor } from "../assets/color/color";
 
 const FeedPreviewCard = styled.div`
   width: 20rem;
@@ -54,9 +55,10 @@ const Date = styled.div`
 const FeedPreviewFooter = styled.div``;
 
 const Like = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   float: right;
   margin: 1rem;
+  color: ${PrimaryColor};
 `;
 
 function FeedPreview({ title, content, date, likeCount }) {
