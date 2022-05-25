@@ -47,15 +47,17 @@ function Feed() {
   const navigate = useNavigate();
 
   return (
-    <FeedMain>
-      <FeedTitle>{feed.title}</FeedTitle>
-      {feed.tag.map((tag) => {
-        return <FeedTag>{`#${feed.tag}`}</FeedTag>;
-      })}
-      <FeedContentsContainer>
-        <FeedContents>{feed.contents}</FeedContents>
-      </FeedContentsContainer>
-    </FeedMain>
+    feed && (
+      <FeedMain>
+        <FeedTitle>{feed.title}</FeedTitle>
+        {feed.tag.map((tag) => {
+          return <FeedTag>{`#${feed.tag}`}</FeedTag>;
+        })}
+        <FeedContentsContainer>
+          <FeedContents>{feed.contents}</FeedContents>
+        </FeedContentsContainer>
+      </FeedMain>
+    )
   );
 }
 
