@@ -18,10 +18,16 @@ const FeedTitle = styled.div`
   font-size: 32px;
 `;
 
-const FeedTag = styled.div`
+const FeedTag = styled.span`
   font-weight: bold;
   font-size: 24px;
   margin-top: 10px;
+  margin-right: 10px;
+  width: fit-content;
+`;
+
+const FeedTagContainer = styled.div`
+  display: flex;
 `;
 
 const FeedContentsContainer = styled.div`
@@ -50,9 +56,11 @@ function Feed() {
     feed && (
       <FeedMain>
         <FeedTitle>{feed.title}</FeedTitle>
-        {feed.tag.map((tag) => {
-          return <FeedTag>{`#${feed.tag}`}</FeedTag>;
-        })}
+        <FeedTagContainer>
+          {feed.tag.map((tag) => {
+            return <FeedTag>{`# ${feed.tag}`}</FeedTag>;
+          })}
+        </FeedTagContainer>
         <FeedContentsContainer>
           <FeedContents>{feed.contents}</FeedContents>
         </FeedContentsContainer>
