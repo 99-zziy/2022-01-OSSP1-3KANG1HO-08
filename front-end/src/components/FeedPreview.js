@@ -46,6 +46,8 @@ const Content = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   color: #495057;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Date = styled.div`
@@ -76,7 +78,7 @@ function FeedPreview({ id, title, content, date, likeCount }) {
       <FeedPreviewMain>
         <TextContainer>
           <Title>{title}</Title>
-          <Content>{content}</Content>
+          <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
           <Date>{date}</Date>
         </TextContainer>
       </FeedPreviewMain>
