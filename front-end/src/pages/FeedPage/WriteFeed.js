@@ -27,18 +27,26 @@ const Form = styled.form`
   padding: 0;
   max-height: 700px;
 `;
-const Input = styled.input`
+const TitleInput = styled.input`
   width: 800px;
   padding: 12px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 `;
+const Input = styled.input`
+  width: 250px;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0px;
+  box-sizing: border-box;
+`;
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: column;
-  margin-bottom: 20px;
+  flex-direction: row;
+  margin-bottom: 10px 20px;
   font-weight: 700;
 `;
 
@@ -64,18 +72,16 @@ const Button = styled.button`
   margin: 20px 0;
 `;
 
-const Content = styled.div`
-  position: relative;
-  border: 0.0625rem solid #d7e2eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  padding: 1.5rem;
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-`;
-
-const Footer = styled.div``;
+// const Content = styled.div`
+//   position: relative;
+//   border: 0.0625rem solid #d7e2eb;
+//   border-radius: 0.75rem;
+//   overflow: hidden;
+//   padding: 1.5rem;
+//   width: 50%;
+//   margin: 0 auto;
+//   margin-bottom: 4rem;
+// `;
 
 function WriteFeed() {
   let editorState = EditorState.createEmpty();
@@ -84,29 +90,38 @@ function WriteFeed() {
   const onEditorStateChange = (editorState) => {
     setcontents(editorState);
   };
+
   const navigate = useNavigate();
-  const editorToHtml = (editorState) => {
-    return draftToHtml(convertToRaw(editorState.getCurrentContent()));
-  };
+
+  // const editorToHtml = (editorState) => {
+  //   return draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  // };
+
   return (
     <Formik
       initialValues={{
         title: "",
-        tag: "",
+        tag1: "",
+        tag2: "",
+        tag3: "",
+        // tag: [],
         contents: "",
       }}
       validationSchema={Yup.object().shape({
         title: Yup.string().required("제목은 필수 입력 항목입니다."),
-        tag: Yup.string().required("태그는 필수 입력 항목입니다."),
+        tag1: Yup.string().required("태그는 필수 입력 항목입니다."),
+        tag2: Yup.string().required("태그는 필수 입력 항목입니다."),
+        tag3: Yup.string().required("태그는 필수 입력 항목입니다."),
         contents: Yup.string().required("내용은 필수 입력 항목입니다."),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           let dataToSumbit = {
             title: values.title,
-            tag: values.tag,
+            tag: [values.tag1, values.tag2, values.tag3],
             contents: values.contents.value,
           };
+          console.log(dataToSumbit);
           Write(dataToSumbit).then((res) => {
             console.log(res);
           });
@@ -125,49 +140,76 @@ function WriteFeed() {
           handleBlur,
           handleSubmit,
         } = props;
-        // console.log(values);
         return (
           <div>
             <Container>
               <Form onSubmit={handleSubmit}>
+                <TitleInput
+                  required
+                  type="text"
+                  id="title"
+                  value={values.title}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="제목을 입력해주세요"
+                  className={
+                    errors.title && touched.title
+                      ? "text-input error"
+                      : "text-input"
+                  }
+                />
+                {errors.title && touched.title && (
+                  <div className="input-feedback">{errors.title}</div>
+                )}
+                <p />
                 <InputContainer>
                   <Input
                     required
+                    style={{ marginRight: "25px" }}
                     type="text"
-                    id="title"
-                    value={values.title}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="제목을 입력해주세요"
-                    className={
-                      errors.title && touched.title
-                        ? "text-input error"
-                        : "text-input"
-                    }
-                  />
-                  {errors.title && touched.title && (
-                    <div className="input-feedback">{errors.title}</div>
-                  )}
-                </InputContainer>
-                <InputContainer>
-                  <Input
-                    required
-                    type="text"
-                    id="tag"
-                    value={values.tag}
+                    id="tag1"
+                    // name={values.tag[0]}
+                    value={values.tag1}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="태그를 입력해주세요"
                     className={
-                      errors.tag && touched.tag
+                      errors.tag1 && touched.tag1
                         ? "text-input error"
                         : "text-input"
                     }
                   />
-                  {errors.tag && touched.tag && (
-                    <div className="input-feedback">{errors.tag}</div>
-                  )}
+                  <Input
+                    required
+                    style={{ marginRight: "25px" }}
+                    type="text"
+                    id="tag2"
+                    value={values.tag2}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="태그를 입력해주세요"
+                    className={
+                      errors.tag2 && touched.tag2
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  <Input
+                    required
+                    type="text"
+                    id="tag3"
+                    value={values.tag3}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="태그를 입력해주세요"
+                    className={
+                      errors.tag3 && touched.tag3
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
                 </InputContainer>
+                <p />
                 <EditorContainer>
                   <Editor
                     editorState={contents}
@@ -183,7 +225,7 @@ function WriteFeed() {
                     editorClassName="editorClassName"
                     // value={values.contents}
                     onEditorStateChange={onEditorStateChange}
-                    editorStyle={{ "max-height": "200px", height: "200px" }}
+                    editorStyle={{ maxHeight: "200px", height: "200px" }}
                   />
                   <textarea
                     style={{ display: "none", overflowY: "scroll" }}
@@ -205,9 +247,9 @@ function WriteFeed() {
                 </Button>
               </Form>
             </Container>
-            <Content
+            {/* <Content
               dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
-            />
+            /> */}
           </div>
         );
       }}

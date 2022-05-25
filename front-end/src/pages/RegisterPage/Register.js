@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { PrimaryColor } from "../../assets/color/color";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/user";
 import { Signup } from "../../api/authApi";
 import { useNavigate } from "react-router";
@@ -72,7 +71,7 @@ const Form = styled.form`
 `;
 
 function Register(props) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Formik
@@ -104,15 +103,6 @@ function Register(props) {
               alert("회원 가입이 완료되었습니다.");
               navigate("/login");
             }
-            // dispatch(
-            //   registerUser({
-            //     sign_up: res.success,
-            //   })
-            // );
-            // if (res.success) {
-            //   alert("회원 가입이 완료되었습니다.");
-            //   navigate("/login");
-            // }
           });
 
           setSubmitting(false);
