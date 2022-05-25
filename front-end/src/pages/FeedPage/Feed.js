@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PrimaryColor } from "../../assets/color/color";
+import draftToHtml from "draftjs-to-html";
 import { useNavigate } from "react-router";
 import { getFeed } from "../../api/feedApi";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { convertToRaw } from "draft-js";
 
 const FeedMain = styled.div`
   display: flex;
@@ -63,6 +65,7 @@ function Feed() {
     getFeed(id).then((res) => {
       setFeed(res.feeds);
       setUserEmail(res.userEmail);
+      console.log(feed.tag);
     });
   }, []);
 
@@ -74,12 +77,14 @@ function Feed() {
           {`${moment(feed.createdAt).format("YYYY.MM.DD")} / ${userEmail}`}
         </FeedDate>
         <FeedTagContainer>
-          {feed.tag.map((tag) => {
-            return <FeedTag>{`# ${feed.tag}`}</FeedTag>;
+          {feed.tag.map((tag, inex) => {
+            return <FeedTag key={inex}>{`# ${tag}`}</FeedTag>;
           })}
         </FeedTagContainer>
         <FeedContentsContainer>
-          <FeedContents>{feed.contents}</FeedContents>
+          <FeedContents
+            dangerouslySetInnerHTML={{ __html: feed.contents }}
+          ></FeedContents>
         </FeedContentsContainer>
       </FeedMain>
     )
