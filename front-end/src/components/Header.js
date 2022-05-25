@@ -5,9 +5,9 @@ import search from "../assets/icon/search.png";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { PrimaryColor } from "../assets/color/color";
-import { useNavigate } from "react-router";
 import { Logout } from "../api/authApi";
 import { logoutUser } from "../store/user";
+import { useNavigate } from "react-router";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -85,8 +85,8 @@ const SearchIcon = styled.img`
 function Header() {
   const user = useSelector((state) => state.persistReducer.user);
   const isLogin = user.isLogin;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     Logout().then((res) => {
@@ -108,6 +108,15 @@ function Header() {
     //     }
     //   });
   };
+
+  const loginHandler = () => {
+    navigate("/login");
+  };
+
+  const writeHandler = () => {
+    navigate("/write");
+  };
+
   return (
     <HeaderContainer>
       <Logo src={logo}></Logo>
@@ -118,7 +127,7 @@ function Header() {
             <SearchIcon src={search}></SearchIcon>
           </SearchBar>
           <Button>
-            <TextDecoration href="/write">새 글 작성</TextDecoration>
+            <TextDecoration onClick={writeHandler}>새 글 작성</TextDecoration>
           </Button>
           <Button>
             <TextDecoration onClick={logoutHandler}>로그아웃</TextDecoration>
@@ -132,7 +141,7 @@ function Header() {
             <SearchIcon src={search}></SearchIcon>
           </SearchBar>
           <Button>
-            <TextDecoration href="/login">{"로그인"}</TextDecoration>
+            <TextDecoration onClick={loginHandler}>{"로그인"}</TextDecoration>
           </Button>
         </LogoutHeaderContainer>
       )}
