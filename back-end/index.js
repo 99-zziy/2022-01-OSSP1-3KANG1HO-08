@@ -85,7 +85,6 @@ app.post("/feeds", (req, res) => {
 app.get("/feeds/:id/edit", (req, res) => {
   Feed.findOne({ _id: req.params.id }, (err, feed) => {
     if (err) return res.json(err);
-    res.render('index', { feeds: feeds });
   })
 })
 //
@@ -100,7 +99,7 @@ app.put("/feeds/:id", (req, res) => {
 });
 //사용자 피드 리스트
 app.get('/feeds/:id', (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, feeds) => {
+  Feed.find({ userFrom: req.params.id }, (err, feeds) => {
     if (err) return res.json(err);
     return res.status(200).send({ feeds: feeds })
 
