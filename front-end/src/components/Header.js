@@ -12,9 +12,9 @@ import { logoutUser } from "../store/user";
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #f8f9fa;
   margin: 10px 5px;
-  padding: 0 20px;
+  padding: 5px 20px;
 `;
 
 const Logo = styled.img`
