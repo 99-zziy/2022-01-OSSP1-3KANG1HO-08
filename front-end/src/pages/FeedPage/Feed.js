@@ -4,6 +4,7 @@ import { PrimaryColor } from "../../assets/color/color";
 import { useNavigate } from "react-router";
 import { getFeed } from "../../api/feedApi";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 
 const FeedMain = styled.div`
   display: flex;
@@ -15,23 +16,34 @@ const FeedMain = styled.div`
 
 const FeedTitle = styled.div`
   font-weight: bold;
-  font-size: 32px;
+  font-size: 48px;
+`;
+
+const FeedDate = styled.div`
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 20px;
+  color: gray;
 `;
 
 const FeedTag = styled.span`
   font-weight: bold;
-  font-size: 24px;
+  font-size: 16px;
   margin-top: 10px;
   margin-right: 10px;
   width: fit-content;
+  color: ${PrimaryColor};
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 20px;
 `;
 
 const FeedTagContainer = styled.div`
   display: flex;
+  margin-bottom: 5px;
 `;
 
 const FeedContentsContainer = styled.div`
-  background-color: #f8f9fa;
   padding: 16px;
   margin-top: 10px;
   min-height: 300px;
@@ -43,19 +55,24 @@ const FeedContents = styled.div`
 
 function Feed() {
   const [feed, setFeed] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getFeed(id).then((res) => {
       setFeed(res.feeds);
+      setUserEmail(res.userEmail);
     });
   }, []);
-  const navigate = useNavigate();
 
   return (
     feed && (
       <FeedMain>
         <FeedTitle>{feed.title}</FeedTitle>
+        <FeedDate>
+          {`${moment(feed.createdAt).format("YYYY.MM.DD")} / ${userEmail}`}
+        </FeedDate>
         <FeedTagContainer>
           {feed.tag.map((tag) => {
             return <FeedTag>{`# ${feed.tag}`}</FeedTag>;
