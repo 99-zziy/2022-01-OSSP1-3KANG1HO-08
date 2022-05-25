@@ -120,9 +120,13 @@ function Header() {
     navigate("/write");
   };
 
+  const logoHandler = () => {
+    navigate("/");
+  };
+
   return (
     <HeaderContainer>
-      <Logo src={logo}></Logo>
+      <Logo src={logo} onClick={logoHandler}></Logo>
       {isLogin ? (
         <LoginHeaderContainer>
           <SearchBar>
