@@ -19,6 +19,7 @@ const HeaderContainer = styled.div`
 
 const Logo = styled.img`
   width: 200px;
+  cursor: pointer;
 `;
 
 const LoginHeaderContainer = styled.div`
@@ -47,6 +48,7 @@ const Button = styled.button`
   font-size: 16px;
   height: 40px;
   margin: auto 4px;
+  cursor: pointer;
 `;
 
 const TextDecoration = styled.a`
@@ -58,6 +60,7 @@ const ProfileButton = styled.img`
   width: 40px;
   height: 40px;
   margin: auto 0;
+  cursor: pointer;
 `;
 
 const SearchBar = styled.div`
