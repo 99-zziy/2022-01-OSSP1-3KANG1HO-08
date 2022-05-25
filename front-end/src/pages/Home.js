@@ -7,6 +7,8 @@ const FeedPreviewContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 80px;
+  margin-left: 30px;
+  margin-right: 30px;
   justify-content: center;
 `;
 
