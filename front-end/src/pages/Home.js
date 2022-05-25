@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getFeedList } from "../api/feedApi";
 import FeedPreview from "../components/FeedPreview";
+import moment from "moment";
 
 const FeedPreviewContainer = styled.div`
   display: flex;
@@ -26,13 +27,14 @@ function Home() {
     <FeedPreviewContainer>
       {feedList &&
         feedList.map((feed, index) => {
+          const date = moment(feed.createdAt).format("YYYY.MM.DD");
           return (
             <FeedPreview
               key={index}
               id={feed._id}
               title={feed.title}
               content={feed.contents}
-              date={feed.createdAt}
+              date={date}
               likeCount={6}
             ></FeedPreview>
           );
