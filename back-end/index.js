@@ -8,6 +8,8 @@ const { User } = require("./models/User");
 const { auth } = require("./middleware/auth");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const { Feed } = require("./models/Feed");
+const router = express.Router();
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -60,8 +62,7 @@ app.post("/users/login", async (req, res) => {
     user.generateToken((err, user) => {
       if (err) return res.status(400).send(err);
 
-      // 토큰을 쿠키에 저장
-      res
+      res // 토큰을 쿠키에 저장
         .cookie("x_auth", user.token)
         .status(200)
         .json({ loginSuccess: true, userId: user._id });
@@ -86,6 +87,54 @@ app.get("/users/logout", auth, (req, res) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({ success: true });
   });
+});
+
+
+app.post("/feeds", (req, res) => {
+  Feed.create(req.body, (err, feeds) => {
+    if (err) return res.json(err);
+
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds/:id/edit", (req, res) => {
+  Feed.findOne({ _id: req.params.id }, (err, feed) => {
+    if (err) return res.json(err);
+    res.render("index", { feeds: feeds });
+  });
+});
+
+app.put("/feeds/:id", (req, res) => {
+  req.body.updateAt = Date.now();
+  Feed.findOneAndUpdate({ _id: req.params.id }, req.body, (err, feeds) => {
+    if (err) return res.json(err);
+
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds/:id", (req, res) => {
+  Feed.findOne({ _id: req.params.id }, (err, feeds) => {
+    if (err) return res.json(err);
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.delete("/feeds/:id", (req, res) => {
+  Feed.deleteOne({ _id: req.params.id }, (req, res) => {
+    if (err) return res.json(err);
+    return res.status(200).send({ feeds: feeds });
+  });
+});
+
+app.get("/feeds", (req, res) => {
+  Feed.find({})
+    .sort("-createdAt")
+    .exec((err, feeds) => {
+      if (err) return res.json(err);
+      return res.status(200).send({ feeds: feeds });
+    });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
