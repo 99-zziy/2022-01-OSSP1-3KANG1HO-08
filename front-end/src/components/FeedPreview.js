@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PrimaryColor } from "../assets/color/color";
+import { useNavigate } from "react-router";
 
 const FeedPreviewCard = styled.div`
   width: 20rem;
@@ -14,6 +15,7 @@ const FeedPreviewCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const FeedPreviewMain = styled.div``;
@@ -61,10 +63,16 @@ const Like = styled.div`
   color: ${PrimaryColor};
 `;
 
-function FeedPreview({ title, content, date, likeCount }) {
+function FeedPreview({ id, title, content, date, likeCount }) {
+  const navigate = useNavigate();
+
+  const onFeedClick = () => {
+    navigate(`/feed/${id}`);
+  };
+
   // api 통신 코드 추가하면 실제 데이터 넣을 것, 지금은 더미 데이터
   return (
-    <FeedPreviewCard>
+    <FeedPreviewCard onClick={onFeedClick}>
       <FeedPreviewMain>
         <TextContainer>
           <Title>{title}</Title>

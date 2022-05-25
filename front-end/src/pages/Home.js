@@ -29,6 +29,7 @@ function Home() {
           return (
             <FeedPreview
               key={index}
+              id={feed._id}
               title={feed.title}
               content={feed.contents}
               date={feed.createdAt}

@@ -8,6 +8,7 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/Register"));
 const Header = lazy(() => import("./components/Header"));
 const WriteFeed = lazy(() => import("./pages/FeedPage/WriteFeed"));
+const Feed = lazy(() => import("./pages/FeedPage/Feed"));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/write" element={<WriteFeed />} />
+            <Route path="/feed" element={<Feed />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
