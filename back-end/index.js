@@ -97,14 +97,17 @@ app.put("/feeds/:id", (req, res) => {
     return res.status(200).send({ feeds: feeds })
   });
 });
-//사용자 피드 리스트
-app.get('/feeds/:id', (req, res) => {
-  Feed.find({ userFrom: req.params.id }, (err, feeds) => {
-    if (err) return res.json(err);
-    return res.status(200).send({ feeds: feeds })
 
-  });
+
+//글 조회
+app.get('/feeds/:id', async (req, res) => {
+  const feed = await Feed.findOne({ _id: req.params.id });
+  if(!feed) return res.json(err);
+  const user = await User.findOne({_id: feed.userFrom});
+  if(!user) return res.json(err);
+  return res.status(200).send({ feeds: feed, userEmail: user.email })
 });
+
 //피드 삭제
 app.delete('/feeds/:id', (req, res) => {
   Feed.deleteOne({ _id: req.params.id }, (req, res) => {
