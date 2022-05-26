@@ -5,25 +5,26 @@ import search from "../assets/icon/search.png";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { PrimaryColor } from "../assets/color/color";
-import { useNavigate } from "react-router";
 import { Logout } from "../api/authApi";
 import { logoutUser } from "../store/user";
+import { useNavigate } from "react-router";
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #f8f9fa;
   margin: 10px 5px;
-  padding: 0 20px;
+  padding: 5px 20px;
 `;
 
 const Logo = styled.img`
   width: 200px;
+  cursor: pointer;
 `;
 
 const LoginHeaderContainer = styled.div`
   display: flex;
-  width: 380px;
+  width: 480px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -47,6 +48,7 @@ const Button = styled.button`
   font-size: 16px;
   height: 40px;
   margin: auto 4px;
+  cursor: pointer;
 `;
 
 const TextDecoration = styled.a`
@@ -58,6 +60,7 @@ const ProfileButton = styled.img`
   width: 40px;
   height: 40px;
   margin: auto 0;
+  cursor: pointer;
 `;
 
 const SearchBar = styled.div`
@@ -85,8 +88,8 @@ const SearchIcon = styled.img`
 function Header() {
   const user = useSelector((state) => state.persistReducer.user);
   const isLogin = user.isLogin;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     Logout().then((res) => {
@@ -108,9 +111,22 @@ function Header() {
     //     }
     //   });
   };
+
+  const loginHandler = () => {
+    navigate("/login");
+  };
+
+  const writeHandler = () => {
+    navigate("/write");
+  };
+
+  const logoHandler = () => {
+    navigate("/");
+  };
+
   return (
     <HeaderContainer>
-      <Logo src={logo}></Logo>
+      <Logo src={logo} onClick={logoHandler}></Logo>
       {isLogin ? (
         <LoginHeaderContainer>
           <SearchBar>
@@ -118,7 +134,7 @@ function Header() {
             <SearchIcon src={search}></SearchIcon>
           </SearchBar>
           <Button>
-            <TextDecoration href="/write">새 글 작성</TextDecoration>
+            <TextDecoration onClick={writeHandler}>새 글 작성</TextDecoration>
           </Button>
           <Button>
             <TextDecoration onClick={logoutHandler}>로그아웃</TextDecoration>
@@ -132,7 +148,7 @@ function Header() {
             <SearchIcon src={search}></SearchIcon>
           </SearchBar>
           <Button>
-            <TextDecoration href="/login">{"로그인"}</TextDecoration>
+            <TextDecoration onClick={loginHandler}>{"로그인"}</TextDecoration>
           </Button>
         </LogoutHeaderContainer>
       )}

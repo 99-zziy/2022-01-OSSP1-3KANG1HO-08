@@ -102,6 +102,7 @@ function LoginPage(props) {
           };
           Login(dataToSumbit).then((res) => {
             console.log(res);
+
             if (!res.loginSuccess) setFormErrorMessage(res.message);
             // else {
             //   navigate("/");
@@ -112,7 +113,11 @@ function LoginPage(props) {
                 isLogin: true,
               })
             );
-            if (res.loginSuccess) navigate("/");
+            console.log(res);
+            if (res.loginSuccess) {
+              window.localStorage.setItem("userId", res.userId);
+              navigate("/");
+            }
           });
           setSubmitting(false);
         }, 500);

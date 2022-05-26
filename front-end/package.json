@@ -11,6 +11,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "formik": "^2.2.9",
+    "moment": "^2.29.3",
     "open-color": "^1.9.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
