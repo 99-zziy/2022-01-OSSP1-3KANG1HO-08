@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
 import FeedPreview from "./FeedPreview";
 import { PrimaryColor } from "../assets/color/color";
+import CloseIcon from "../assets/icon/close.png";
 
 const ModalHeader = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Tag = styled.div`
@@ -21,10 +22,29 @@ const FeedContainer = styled.div`
   display: flex;
 `;
 
+const CloseButton = styled.img`
+  width: 20px;
+  cursor: pointer;
+`;
+
+const ModalText = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+`;
+
 function TagRecommendationModal() {
+  const [visible, setVisible] = useState(true);
+
   return (
-    <Modal visible={true}>
-      <ModalHeader>{"작성해주신 태그와 관련된 추천 태그입니다!"}</ModalHeader>
+    <Modal visible={visible}>
+      <ModalHeader>
+        <ModalText>{"작성해주신 태그와 관련된 추천 태그입니다!"}</ModalText>
+        <CloseButton
+          src={CloseIcon}
+          onClick={() => setVisible(false)}
+        ></CloseButton>
+      </ModalHeader>
       {/* 더미 데이터로 일단 넣어두기*/}
       <Tag>{"# 포인터"}</Tag>
       <FeedContainer>

@@ -52,7 +52,7 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 40px;
+  padding: 20px 40px 40px;
 `;
 
 Modal.propTypes = {
