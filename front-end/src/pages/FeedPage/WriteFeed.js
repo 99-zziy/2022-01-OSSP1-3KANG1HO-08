@@ -9,6 +9,7 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { PrimaryColor } from "../../assets/color/color";
 import { Write } from "../../api/authApi";
+import TagRecommendationModal from "../../components/TagRecommendationModal";
 
 const Container = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ const Button = styled.button`
 function WriteFeed() {
   let editorState = EditorState.createEmpty();
   const [contents, setcontents] = useState(editorState);
+  const [isTagModal, setIsTagModal] = useState(false);
 
   const onEditorStateChange = (editorState) => {
     setcontents(editorState);
@@ -124,8 +126,9 @@ function WriteFeed() {
           console.log(dataToSumbit);
           Write(dataToSumbit).then((res) => {
             console.log(res);
+            setIsTagModal(true);
           });
-          navigate("/");
+          // navigate("/");
           setSubmitting(false);
         }, 500);
       }}
@@ -247,6 +250,7 @@ function WriteFeed() {
                 </Button>
               </Form>
             </Container>
+            {isTagModal && <TagRecommendationModal></TagRecommendationModal>}
             {/* <Content
               dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
             /> */}
