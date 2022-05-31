@@ -4,6 +4,7 @@ import Modal from "./Modal";
 import FeedPreview from "./FeedPreview";
 import { PrimaryColor } from "../assets/color/color";
 import CloseIcon from "../assets/icon/close.png";
+import TagEvaluationModal from "./TagEvaluationModal";
 
 const ModalHeader = styled.div`
   display: flex;
@@ -42,7 +43,9 @@ function TagRecommendationModal() {
         <ModalText>{"작성해주신 태그와 관련된 추천 태그입니다!"}</ModalText>
         <CloseButton
           src={CloseIcon}
-          onClick={() => setVisible(false)}
+          onClick={() => {
+            setVisible(false);
+          }}
         ></CloseButton>
       </ModalHeader>
       {/* 더미 데이터로 일단 넣어두기*/}
@@ -87,6 +90,7 @@ function TagRecommendationModal() {
           isModal={true}
         ></FeedPreview>
       </FeedContainer>
+      <TagEvaluationModal />
     </Modal>
   );
 }
