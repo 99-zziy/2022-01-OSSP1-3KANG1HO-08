@@ -51,11 +51,12 @@ const HiddenText = styled.p`
   ${({ show }) => (show ? `display:block` : `display: none`)}
 `;
 
-const onClickRating = () => {};
-
-function Score() {
+function Score({ onClose }) {
   const [hovered, setHovered] = useState(null);
-  const [clicked, setClicked] = useState(null);
+
+  const onClickRating = (rating) => {
+    onClose();
+  };
 
   return (
     <ReviewBox>
@@ -75,6 +76,7 @@ function Score() {
             color={el <= hovered ? `orange` : "#ddd"}
             onMouseEnter={() => setHovered(el)}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => onClickRating(el)}
           />
         ))}
       </StarContainer>

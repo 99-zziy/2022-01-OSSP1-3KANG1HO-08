@@ -5,6 +5,7 @@ import FeedPreview from "./FeedPreview";
 import { PrimaryColor } from "../assets/color/color";
 import CloseIcon from "../assets/icon/close.png";
 import TagEvaluationModal from "./TagEvaluationModal";
+import { useNavigate } from "react-router";
 
 const ModalHeader = styled.div`
   display: flex;
@@ -36,6 +37,8 @@ const ModalText = styled.p`
 
 function TagRecommendationModal() {
   const [visible, setVisible] = useState(true);
+  const [evaluationVisibile, setEvaluationVisibile] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Modal visible={visible} width={"800px"}>
@@ -44,7 +47,7 @@ function TagRecommendationModal() {
         <CloseButton
           src={CloseIcon}
           onClick={() => {
-            setVisible(false);
+            setEvaluationVisibile(true);
           }}
         ></CloseButton>
       </ModalHeader>
@@ -90,7 +93,14 @@ function TagRecommendationModal() {
           isModal={true}
         ></FeedPreview>
       </FeedContainer>
-      <TagEvaluationModal />
+      <TagEvaluationModal
+        visible={evaluationVisibile}
+        onModalClose={() => {
+          setEvaluationVisibile(false);
+          setVisible(false);
+          navigate("/");
+        }}
+      />
     </Modal>
   );
 }
