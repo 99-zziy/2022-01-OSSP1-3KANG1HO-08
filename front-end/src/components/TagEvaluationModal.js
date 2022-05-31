@@ -6,7 +6,7 @@ function TagRecommendationModal() {
   const [visible, setVisible] = useState(true);
 
   return (
-    <Modal visible={visible}>
+    <Modal visible={visible} width={"400px"}>
       <Score></Score>
     </Modal>
   );

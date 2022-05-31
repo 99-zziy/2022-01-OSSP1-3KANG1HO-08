@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-function Modal({ className, visible, children }) {
+function Modal({ className, visible, children, width }) {
   return (
     <>
       <ModalOverlay visible={visible} />
       <ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <ModalInner tabIndex="0" className="modal-inner">
+        <ModalInner tabIndex="0" className="modal-inner" width={width}>
           {children}
         </ModalInner>
       </ModalWrapper>
@@ -46,7 +46,7 @@ const ModalInner = styled.div`
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 800px;
+  width: ${(props) => props.width};
   overflow: auto;
   max-height: 700px;
   top: 50%;

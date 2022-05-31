@@ -38,7 +38,7 @@ function TagRecommendationModal() {
   const [visible, setVisible] = useState(true);
 
   return (
-    <Modal visible={visible}>
+    <Modal visible={visible} width={"800px"}>
       <ModalHeader>
         <ModalText>{"작성해주신 태그와 관련된 추천 태그입니다!"}</ModalText>
         <CloseButton
