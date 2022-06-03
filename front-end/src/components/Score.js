@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { AiFillStar } from "react-icons/ai";
+import { FaThumbsDown } from "react-icons/fa";
+import { FaThumbsUp } from "react-icons/fa";
 import { PrimaryColor } from "../assets/color/color";
-
-//style-component 사용
-const textList = [
-  "별로에요",
-  "그저 그래요",
-  "보통이에요",
-  "좋아요",
-  "최고예요",
-];
 
 const ReviewBox = styled.div`
   padding: 30px;
@@ -19,8 +11,18 @@ const ReviewBox = styled.div`
   font-weight: bold;
 `;
 
-const RatingStar = styled(AiFillStar)`
+const FaThumbsDownIcon = styled(FaThumbsDown)`
   cursor: pointer;
+  color: indianred;
+  width: 30px;
+  height: 30px;
+`;
+
+const FaThumbsUpIcon = styled(FaThumbsUp)`
+  cursor: pointer;
+  color: cornflowerblue;
+  width: 30px;
+  height: 30px;
 `;
 
 const ReviewTextBox = styled.div`
@@ -29,31 +31,24 @@ const ReviewTextBox = styled.div`
   padding-bottom: 50px;
 `;
 
-const StarContainer = styled.div`
-  text-align: center;
-  border: none;
-  background-color: white;
+const ThumbsContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ReviewThumbBox = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const HiddenText = styled.p`
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  width: 130px;
-  height: 30px;
-  padding-top: 7px;
-  transform: translate(-50%, -50%);
-  color: white;
-  background-color: ${PrimaryColor};
-  border-radius: 4px;
-  font-size: 16px;
-
-  ${({ show }) => (show ? `display:block` : `display: none`)}
+  color: #333;
+  font-size: 15px;
 `;
 
 function Score({ onClose }) {
-  const [hovered, setHovered] = useState(null);
-
   const onClickRating = (rating) => {
     onClose();
   };
@@ -62,24 +57,17 @@ function Score({ onClose }) {
     <ReviewBox>
       <ReviewTextBox>
         <p>추천받은 태그를 평가해주세요!</p>
-        {[1, 2, 3, 4, 5].map((num) => (
-          <HiddenText key={num} show={hovered === num}>
-            {textList[num - 1]}
-          </HiddenText>
-        ))}
       </ReviewTextBox>
-      <StarContainer>
-        {[1, 2, 3, 4, 5].map((el) => (
-          <RatingStar
-            size={35}
-            key={`rating_${el}`}
-            color={el <= hovered ? `orange` : "#ddd"}
-            onMouseEnter={() => setHovered(el)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => onClickRating(el)}
-          />
-        ))}
-      </StarContainer>
+      <ReviewThumbBox>
+        <ThumbsContainer onClick={() => onClickRating(0)}>
+          <FaThumbsDownIcon></FaThumbsDownIcon>
+          <HiddenText>별로에요</HiddenText>
+        </ThumbsContainer>
+        <ThumbsContainer onClick={() => onClickRating(1)}>
+          <FaThumbsUpIcon></FaThumbsUpIcon>
+          <HiddenText>좋아요 !</HiddenText>
+        </ThumbsContainer>
+      </ReviewThumbBox>
     </ReviewBox>
   );
 }
