@@ -4,8 +4,8 @@ import { PrimaryColor } from "../assets/color/color";
 import { useNavigate } from "react-router";
 
 const FeedPreviewCard = styled.div`
-  width: 20rem;
-  height: 18rem;
+  width: ${(props) => (props.isModal ? "14rem" : "20rem")};
+  height: ${(props) => (props.isModal ? "12rem" : "18rem")};
   background: #f8f9fa;
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 8%) 0px 4px 16px 0px;
@@ -21,7 +21,7 @@ const FeedPreviewCard = styled.div`
 const FeedPreviewMain = styled.div``;
 
 const TextContainer = styled.div`
-  padding: 1rem;
+  padding: ${(props) => (props.isModal ? "1rem" : "0.5rem")};
 `;
 
 const Title = styled.div`
@@ -36,12 +36,12 @@ const Title = styled.div`
 `;
 
 const Content = styled.div`
-  margin: 0px 0px 1.5rem;
+  margin: ${(props) => (props.isModal ? "0px 0px 0.5rem" : "0px 0px 1.5rem")};
   word-break: break-word;
   overflow-wrap: break-word;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 8rem;
+  height: ${(props) => (props.isModal ? "3rem" : "8rem")};
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -61,11 +61,11 @@ const FeedPreviewFooter = styled.div``;
 const Like = styled.div`
   font-size: 0.9rem;
   float: right;
-  margin: 1rem;
+  margin: ${(props) => (props.isModal ? "0.5rem" : "1rem")};
   color: ${PrimaryColor};
 `;
 
-function FeedPreview({ id, title, content, date, likeCount }) {
+function FeedPreview({ id, title, content, date, likeCount, isModal }) {
   const navigate = useNavigate();
 
   const onFeedClick = () => {
@@ -74,16 +74,19 @@ function FeedPreview({ id, title, content, date, likeCount }) {
 
   // api 통신 코드 추가하면 실제 데이터 넣을 것, 지금은 더미 데이터
   return (
-    <FeedPreviewCard onClick={onFeedClick}>
+    <FeedPreviewCard onClick={onFeedClick} isModal={isModal}>
       <FeedPreviewMain>
-        <TextContainer>
+        <TextContainer isModal={isModal}>
           <Title>{title}</Title>
-          <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
+          <Content
+            isModal={isModal}
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></Content>
           <Date>{date}</Date>
         </TextContainer>
       </FeedPreviewMain>
       <FeedPreviewFooter>
-        <Like>{`♥ ${likeCount}`}</Like>
+        <Like isModal={isModal}>{`♥ ${likeCount}`}</Like>
       </FeedPreviewFooter>
     </FeedPreviewCard>
   );
