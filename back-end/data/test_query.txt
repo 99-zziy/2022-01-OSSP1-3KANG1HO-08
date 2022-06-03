@@ -1,0 +1,405 @@
+For making test nodes
+--------------------copy--------------------
+CREATE (조건문:Tag {title: '조건문'}),
+(연산자:Tag {title: '연산자'}),
+(반복문:Tag {title: '반복문'}),
+(함수:Tag {title: '함수'}),
+(포인터:Tag {title: '포인터'}),
+(배열:Tag {title: '배열'}),
+(자료형:Tag {title: '자료형'}),
+(상수:Tag {title: '상수'}),
+(변수:Tag {title: '변수'}),
+(구조체:Tag {title: '구조체'}),
+(표준입출력:Tag {title: '표준입출력'}),
+(문자열:Tag {title: '메모리'}),
+(파일입출력:Tag {title: '파일입출력'}),
+(메모리:Tag {title: '메모리'}),
+(if문:Tag {title: 'if문'}),
+(switch문:Tag {title: 'switch문'}),
+(다중if:Tag {title: '다중if'}),
+(continue문:Tag {title: 'continue문'}),
+(break문:Tag {title: 'break문'}),
+(쉬프트연산자:Tag {title: '쉬프트연산자'}),
+(삼항연산자:Tag {title: '삼항연산자'}),
+(논리연산자:Tag {title: '논리연산자'}),
+(연산자우선순위:Tag {title: '연산자우선순위'}),
+(비트연산자:Tag {title: '비트연산자'}),
+(비교연산자:Tag {title: '비교연산자'}),
+(증감연산자:Tag {title: '증감연산자'}),
+(대입연산자:Tag {title: '대입연산자'}),
+(산술연산자:Tag {title: '산술연산자'}),
+(중첩반복문:Tag {title: '중첩반복문'}),
+(for문:Tag {title: 'for문'}),
+(while문:Tag {title: 'while문'}),
+(재귀함수:Tag {title: '재귀함수'}),
+(정의:Tag {title: '정의'}),
+(호출:Tag {title: '호출'}),
+(매개변수:Tag {title: '매개변수'}),
+(지역변수:Tag {title: '지역변수'}),
+(라이브러리:Tag {title: '라이브러리'}),
+(포인터연산:Tag {title: '포인터연산'}),
+(주소연산자:Tag {title: '주소연산자'}),
+(callbyvalue:Tag {title: 'callbyvalue'}),
+(callbyreference:Tag {title: 'callbyreference'}),
+(이차원포인터:Tag {title: '이차원포인터'}),
+(참조연산자:Tag {title: '참조연산자'}),
+(다차원포인터:Tag {title: '다차원포인터'}),
+(포인터선언:Tag {title: '포인터선언'}),
+(포인터참조:Tag {title: '포인터참조'}),
+(이차원배열:Tag {title: '이차원배열'}),
+(일차원배열:Tag {title: '일차원배열'}),
+(인덱스:Tag {title: '인덱스'}),
+(문자배열:Tag {title: '문자배열'}),
+(다차원배열:Tag {title: '다차원배열'}),
+(배열초기화:Tag {title: '배열초기화'}),
+(short:Tag {title: 'short'}),
+(int:Tag {title: 'int'}),
+(long:Tag {title: 'long'}),
+(문자형:Tag {title: '문자형'}),
+(double:Tag {title: 'double'}),
+(실수형:Tag {title: '실수형'}),
+(float:Tag {title: 'float'}),
+(정수형:Tag {title: '정수형'}),
+(타입변환:Tag {title: '타입변환'}),
+(묵시적타입변환:Tag {title: '묵시적타입변환'}),
+(명시적타입변환:Tag {title: '명시적타입변환'}),
+(리터럴상수:Tag {title: '리터럴상수'}),
+(심볼릭상수:Tag {title: '심볼릭상수'}),
+(static:Tag {title: 'static'}),
+(전역변수:Tag {title: '전역변수'}),
+(extern:Tag {title: 'extern'}),
+(열거체:Tag {title: '열거체'}),
+(공용체:Tag {title: '공용체'}),
+(typedef:Tag {title: 'typedef'}),
+(printf:Tag {title: 'printf'}),
+(scanf:Tag {title: 'scanf'}),
+(strlen:Tag {title: 'strlen'}),
+(strcpy:Tag {title: 'strcpy'}),
+(string:Tag {title: 'string'}),
+(fopen:Tag {title: 'fopen'}),
+(fclose:Tag {title: 'fclose'}),
+(동적할당:Tag {title: '동적할당'}),
+(malloc:Tag {title: 'malloc'}),
+(메모리구조:Tag {title: '메모리구조'}),
+(free:Tag {title: 'free'})
+--------------------copy--------------------
+
+For making relations
+--------------------copy--------------------
+match (조건문:Tag {title: '조건문'}),
+(연산자:Tag {title: '연산자'}),
+(반복문:Tag {title: '반복문'}),
+(함수:Tag {title: '함수'}),
+(포인터:Tag {title: '포인터'}),
+(배열:Tag {title: '배열'}),
+(자료형:Tag {title: '자료형'}),
+(상수:Tag {title: '상수'}),
+(변수:Tag {title: '변수'}),
+(구조체:Tag {title: '구조체'}),
+(표준입출력:Tag {title: '표준입출력'}),
+(문자열:Tag {title: '문자열'}),
+(파일입출력:Tag {title: '파일입출력'}),
+(메모리:Tag {title: '메모리'}),
+(if문:Tag {title: 'if문'}),
+(switch문:Tag {title: 'switch문'}),
+(다중if:Tag {title: '다중if'}),
+(continue문:Tag {title: 'continue문'}),
+(break문:Tag {title: 'break문'}),
+(쉬프트연산자:Tag {title: '쉬프트연산자'}),
+(삼항연산자:Tag {title: '삼항연산자'}),
+(논리연산자:Tag {title: '논리연산자'}),
+(연산자우선순위:Tag {title: '연산자우선순위'}),
+(비트연산자:Tag {title: '비트연산자'}),
+(비교연산자:Tag {title: '비교연산자'}),
+(증감연산자:Tag {title: '증감연산자'}),
+(대입연산자:Tag {title: '대입연산자'}),
+(산술연산자:Tag {title: '산술연산자'}),
+(중첩반복문:Tag {title: '중첩반복문'}),
+(for문:Tag {title: 'for문'}),
+(while문:Tag {title: 'while문'}),
+(재귀함수:Tag {title: '재귀함수'}),
+(정의:Tag {title: '정의'}),
+(호출:Tag {title: '호출'}),
+(매개변수:Tag {title: '매개변수'}),
+(지역변수:Tag {title: '지역변수'}),
+(라이브러리:Tag {title: '라이브러리'}),
+(포인터연산:Tag {title: '포인터연산'}),
+(주소연산자:Tag {title: '주소연산자'}),
+(callbyvalue:Tag {title: 'callbyvalue'}),
+(callbyreference:Tag {title: 'callbyreference'}),
+(이차원포인터:Tag {title: '이차원포인터'}),
+(참조연산자:Tag {title: '참조연산자'}),
+(다차원포인터:Tag {title: '다차원포인터'}),
+(포인터선언:Tag {title: '포인터선언'}),
+(포인터참조:Tag {title: '포인터참조'}),
+(이차원배열:Tag {title: '이차원배열'}),
+(일차원배열:Tag {title: '일차원배열'}),
+(인덱스:Tag {title: '인덱스'}),
+(문자배열:Tag {title: '문자배열'}),
+(다차원배열:Tag {title: '다차원배열'}),
+(배열초기화:Tag {title: '배열초기화'}),
+(short:Tag {title: 'short'}),
+(int:Tag {title: 'int'}),
+(long:Tag {title: 'long'}),
+(문자형:Tag {title: '문자형'}),
+(double:Tag {title: 'double'}),
+(실수형:Tag {title: '실수형'}),
+(float:Tag {title: 'float'}),
+(정수형:Tag {title: '정수형'}),
+(타입변환:Tag {title: '타입변환'}),
+(묵시적타입변환:Tag {title: '묵시적타입변환'}),
+(명시적타입변환:Tag {title: '명시적타입변환'}),
+(리터럴상수:Tag {title: '리터럴상수'}),
+(심볼릭상수:Tag {title: '심볼릭상수'}),
+(static:Tag {title: 'static'}),
+(전역변수:Tag {title: '전역변수'}),
+(extern:Tag {title: 'extern'}),
+(열거체:Tag {title: '열거체'}),
+(공용체:Tag {title: '공용체'}),
+(typedef:Tag {title: 'typedef'}),
+(printf:Tag {title: 'printf'}),
+(scanf:Tag {title: 'scanf'}),
+(strlen:Tag {title: 'strlen'}),
+(strcpy:Tag {title: 'strcpy'}),
+(string:Tag {title: 'string'}),
+(fopen:Tag {title: 'fopen'}),
+(fclose:Tag {title: 'fclose'}),
+(동적할당:Tag {title: '동적할당'}),
+(malloc:Tag {title: 'malloc'}),
+(메모리구조:Tag {title: '메모리구조'}),
+(free:Tag {title: 'free'})
+merge (조건문)-[r:relates]->(if문)
+merge (조건문)-[:relates]->(switch문)
+merge (조건문)-[:relates]->(다중if)
+merge (조건문)-[:relates]->(continue문)
+merge (조건문)-[:relates]->(break문)
+merge (if문)-[:relates]->(switch문)
+merge (if문)-[:relates]->(다중if)
+merge (switch문)-[:relates]->(다중if)
+merge (continue문)-[:relates]->(break문)
+merge (연산자)-[:relates]->(삼항연산자)
+merge (연산자)-[:relates]->(쉬프트연산자)
+merge (연산자)-[:relates]->(논리연산자)
+merge (연산자)-[:relates]->(연산자우선순위)
+merge (연산자)-[:relates]->(비트연산자)
+merge (연산자)-[:relates]->(비교연산자)
+merge (연산자)-[:relates]->(증감연산자)
+merge (연산자)-[:relates]->(대입연산자)
+merge (연산자)-[:relates]->(산술연산자)
+merge (삼항연산자)-[:relates]->(쉬프트연산자)
+merge (삼항연산자)-[:relates]->(논리연산자)
+merge (삼항연산자)-[:relates]->(연산자우선순위)
+merge (삼항연산자)-[:relates]->(비트연산자)
+merge (삼항연산자)-[:relates]->(비교연산자)
+merge (삼항연산자)-[:relates]->(증감연산자)
+merge (삼항연산자)-[:relates]->(대입연산자)
+merge (삼항연산자)-[:relates]->(산술연산자)
+merge (쉬프트연산자)-[:relates]->(논리연산자)
+merge (쉬프트연산자)-[:relates]->(연산자우선순위)
+merge (쉬프트연산자)-[:relates]->(비트연산자)
+merge (쉬프트연산자)-[:relates]->(비교연산자)
+merge (쉬프트연산자)-[:relates]->(증감연산자)
+merge (쉬프트연산자)-[:relates]->(대입연산자)
+merge (쉬프트연산자)-[:relates]->(산술연산자)
+merge (논리연산자)-[:relates]->(연산자우선순위)
+merge (논리연산자)-[:relates]->(비트연산자)
+merge (논리연산자)-[:relates]->(비교연산자)
+merge (논리연산자)-[:relates]->(증감연산자)
+merge (논리연산자)-[:relates]->(대입연산자)
+merge (논리연산자)-[:relates]->(산술연산자)
+merge (연산자우선순위)-[:relates]->(비트연산자)
+merge (연산자우선순위)-[:relates]->(비교연산자)
+merge (연산자우선순위)-[:relates]->(증감연산자)
+merge (연산자우선순위)-[:relates]->(대입연산자)
+merge (연산자우선순위)-[:relates]->(산술연산자)
+merge (비트연산자)-[:relates]->(논리연산자)
+merge (비트연산자)-[:relates]->(비교연산자)
+merge (비트연산자)-[:relates]->(증감연산자)
+merge (비트연산자)-[:relates]->(대입연산자)
+merge (비트연산자)-[:relates]->(산술연산자)
+merge (비교연산자)-[:relates]->(증감연산자)
+merge (비교연산자)-[:relates]->(대입연산자)
+merge (비교연산자)-[:relates]->(산술연산자)
+merge (증감연산자)-[:relates]->(대입연산자)
+merge (증감연산자)-[:relates]->(산술연산자)
+merge (대입연산자)-[:relates]->(산술연산자)
+merge (반복문)-[:relates]->(for문)
+merge (반복문)-[:relates]->(while문)
+merge (반복문)-[:relates]->(중첩반복문)
+merge (for문)-[:relates]->(while문)
+merge (for문)-[:relates]->(중첩반복문)
+merge (while문)-[:relates]->(중첩반복문)
+merge (함수)-[:relates]->(재귀함수)
+merge (함수)-[:relates]->(정의)
+merge (함수)-[:relates]->(호출)
+merge (함수)-[:relates]->(매개변수)
+merge (함수)-[:relates]->(지역변수)
+merge (함수)-[:relates]->(라이브러리)
+merge (재귀함수)-[:relates]->(정의)
+merge (재귀함수)-[:relates]->(호출)
+merge (정의)-[:relates]->(호출)
+merge (매개변수)-[:relates]->(지역변수)
+merge (매개변수)-[:relates]->(라이브러리)
+merge (지역변수)-[:relates]->(라이브러리)
+merge (포인터)-[:relates]->(포인터연산)
+merge (포인터)-[:relates]->(주소연산자)
+merge (포인터)-[:relates]->(callbyvalue)
+merge (포인터)-[:relates]->(callbyreference)
+merge (포인터)-[:relates]->(이차원포인터)
+merge (포인터)-[:relates]->(참조연산자)
+merge (포인터)-[:relates]->(다차원포인터)
+merge (포인터)-[:relates]->(포인터선언)
+merge (포인터)-[:relates]->(포인터참조)
+merge (포인터연산)-[:relates]->(주소연산자)
+merge (포인터연산)-[:relates]->(callbyvalue)
+merge (포인터연산)-[:relates]->(callbyreference)
+merge (포인터연산)-[:relates]->(이차원포인터)
+merge (포인터연산)-[:relates]->(참조연산자)
+merge (포인터연산)-[:relates]->(다차원포인터)
+merge (주소연산자)-[:relates]->(callbyvalue)
+merge (주소연산자)-[:relates]->(callbyreference)
+merge (주소연산자)-[:relates]->(이차원포인터)
+merge (주소연산자)-[:relates]->(참조연산자)
+merge (주소연산자)-[:relates]->(다차원포인터)
+merge (callbyvalue)-[:relates]->(callbyreference)
+merge (callbyvalue)-[:relates]->(이차원포인터)
+merge (callbyvalue)-[:relates]->(참조연산자)
+merge (callbyvalue)-[:relates]->(다차원포인터)
+merge (callbyreference)-[:relates]->(이차원포인터)
+merge (callbyreference)-[:relates]->(참조연산자)
+merge (callbyreference)-[:relates]->(다차원포인터)
+merge (이차원포인터)-[:relates]->(참조연산자)
+merge (이차원포인터)-[:relates]->(다차원포인터)
+merge (참조연산자)-[:relates]->(다차원포인터)
+merge (포인터선언)-[:relates]->(포인터참조)
+merge (배열)-[:relates]->(이차원배열)
+merge (배열)-[:relates]->(일차원배열)
+merge (배열)-[:relates]->(인덱스)
+merge (배열)-[:relates]->(문자배열)
+merge (배열)-[:relates]->(다차원배열)
+merge (배열)-[:relates]->(배열초기화)
+merge (이차원배열)-[:relates]->(일차원배열)
+merge (이차원배열)-[:relates]->(인덱스)
+merge (이차원배열)-[:relates]->(문자배열)
+merge (일차원배열)-[:relates]->(인덱스)
+merge (일차원배열)-[:relates]->(문자배열)
+merge (인덱스)-[:relates]->(문자배열)
+merge (다차원배열)-[:relates]->(배열초기화)
+merge (자료형)-[:relates]->(short)
+merge (자료형)-[:relates]->(int)
+merge (자료형)-[:relates]->(long)
+merge (자료형)-[:relates]->(문자형)
+merge (자료형)-[:relates]->(double)
+merge (자료형)-[:relates]->(실수형)
+merge (자료형)-[:relates]->(float)
+merge (자료형)-[:relates]->(정수형)
+merge (자료형)-[:relates]->(타입변환)
+merge (자료형)-[:relates]->(묵시적타입변환)
+merge (자료형)-[:relates]->(명시적타입변환)
+merge (short)-[:relates]->(int)
+merge (short)-[:relates]->(long)
+merge (short)-[:relates]->(문자형)
+merge (short)-[:relates]->(double)
+merge (short)-[:relates]->(실수형)
+merge (short)-[:relates]->(float)
+merge (short)-[:relates]->(정수형)
+merge (short)-[:relates]->(타입변환)
+merge (short)-[:relates]->(묵시적타입변환)
+merge (short)-[:relates]->(명시적타입변환)
+merge (int)-[:relates]->(long)
+merge (int)-[:relates]->(문자형)
+merge (int)-[:relates]->(double)
+merge (int)-[:relates]->(실수형)
+merge (int)-[:relates]->(float)
+merge (int)-[:relates]->(정수형)
+merge (int)-[:relates]->(타입변환)
+merge (int)-[:relates]->(묵시적타입변환)
+merge (int)-[:relates]->(명시적타입변환)
+merge (long)-[:relates]->(문자형)
+merge (long)-[:relates]->(double)
+merge (long)-[:relates]->(실수형)
+merge (long)-[:relates]->(float)
+merge (long)-[:relates]->(정수형)
+merge (long)-[:relates]->(타입변환)
+merge (long)-[:relates]->(묵시적타입변환)
+merge (long)-[:relates]->(명시적타입변환)
+merge (문자형)-[:relates]->(double)
+merge (문자형)-[:relates]->(실수형)
+merge (문자형)-[:relates]->(float)
+merge (문자형)-[:relates]->(정수형)
+merge (문자형)-[:relates]->(타입변환)
+merge (문자형)-[:relates]->(묵시적타입변환)
+merge (문자형)-[:relates]->(명시적타입변환)
+merge (double)-[:relates]->(실수형)
+merge (double)-[:relates]->(float)
+merge (double)-[:relates]->(정수형)
+merge (double)-[:relates]->(타입변환)
+merge (double)-[:relates]->(묵시적타입변환)
+merge (double)-[:relates]->(명시적타입변환)
+merge (실수형)-[:relates]->(float)
+merge (실수형)-[:relates]->(정수형)
+merge (실수형)-[:relates]->(타입변환)
+merge (실수형)-[:relates]->(묵시적타입변환)
+merge (실수형)-[:relates]->(명시적타입변환)
+merge (float)-[:relates]->(정수형)
+merge (float)-[:relates]->(타입변환)
+merge (float)-[:relates]->(묵시적타입변환)
+merge (float)-[:relates]->(명시적타입변환)
+merge (정수형)-[:relates]->(타입변환)
+merge (정수형)-[:relates]->(묵시적타입변환)
+merge (정수형)-[:relates]->(명시적타입변환)
+merge (타입변환)-[:relates]->(묵시적타입변환)
+merge (타입변환)-[:relates]->(명시적타입변환)
+merge (묵시적타입변환)-[:relates]->(명시적타입변환)
+merge (상수)-[:relates]->(리터럴상수)
+merge (상수)-[:relates]->(심볼릭상수)
+merge (리터럴상수)-[:relates]->(심볼릭상수)
+merge (변수)-[:relates]->(static)
+merge (변수)-[:relates]->(전역변수)
+merge (변수)-[:relates]->(extern)
+merge (static)-[:relates]->(전역변수)
+merge (static)-[:relates]->(extern)
+merge (전역변수)-[:relates]->(extern)
+merge (구조체)-[:relates]->(열거체)
+merge (구조체)-[:relates]->(공용체)
+merge (구조체)-[:relates]->(typedef)
+merge (열거체)-[:relates]->(공용체)
+merge (열거체)-[:relates]->(typedef)
+merge (공용체)-[:relates]->(typedef)
+merge (표준입출력)-[:relates]->(printf)
+merge (표준입출력)-[:relates]->(scanf)
+merge (printf)-[:relates]->(scanf)
+merge (문자열)-[:relates]->(strlen)
+merge (문자열)-[:relates]->(strcpy)
+merge (문자열)-[:relates]->(string)
+merge (strlen)-[:relates]->(strcpy)
+merge (strlen)-[:relates]->(string)
+merge (strcpy)-[:relates]->(string)
+merge (파일입출력)-[:relates]->(fopen)
+merge (파일입출력)-[:relates]->(fclose)
+merge (fopen)-[:relates]->(fclose)
+merge (메모리)-[:relates]->(동적할당)
+merge (메모리)-[:relates]->(malloc)
+merge (메모리)-[:relates]->(메모리구조)
+merge (메모리)-[:relates]->(free)
+merge (동적할당)-[:relates]->(malloc)
+merge (동적할당)-[:relates]->(메모리구조)
+merge (동적할당)-[:relates]->(free)
+merge (malloc)-[:relates]->(메모리구조)
+merge (malloc)-[:relates]->(free)
+merge (메모리구조)-[:relates]->(free)
+--------------------copy--------------------
+
+For activating pagerank algol
+--------------------copy--------------------
+CALL gds.graph.project(
+  'Graph Name',
+  'Node Name',
+  'Relationship Name'
+)
+
+call gds.articleRank.stream("Graph Name")
+yield nodeId,score
+return gds.util.asNode(nodeId).title as name,score
+order by score desc
+--------------------copy--------------------

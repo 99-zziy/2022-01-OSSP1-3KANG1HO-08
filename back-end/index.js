@@ -143,4 +143,10 @@ app.get("/users/logout", auth, (req, res) => {
   });
 });
 
+app.get("/feeds/tag/:tag", async(req, res, next)=>{
+  const feed = await Feed.find({tag : req.params.tag})
+  if(!feed) return res.json(err);
+  return res.status(200).send({tag: feed })
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
