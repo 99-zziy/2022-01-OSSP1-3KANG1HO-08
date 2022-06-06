@@ -145,11 +145,13 @@ app.get("/tag/feeds/:tagList", async (req, res) => {
 
   let data = [];
   const tagList = req.params.tagList.split(",");
-  tagList.map(async (tagName, index) => {
-    const feed = await Feed.find({ tag: tagName });
-    data.push({ tagName, feed });
-    if (index == 2) return res.status(200).send({ data: data });
-  });
+  await Promise.all(
+    tagList.map(async (tagName) => {
+      const feed = await Feed.find({ tag: tagName });
+      return data.push({ tagName, feed });
+    })
+  );
+  return res.status(200).send({ data: data });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
