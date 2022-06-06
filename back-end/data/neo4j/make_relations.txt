@@ -25,4 +25,16 @@ MATCH (문자열:Tag {title: '문자열'}),
 (fscanf:Tag {title: 'fscanf'}),
 (fprintf:Tag {title: 'fprintf'}),
 (fread:Tag {title: 'fread'}),
-(fwrite:Tag {title: 'fwrite'}),
+(fwrite:Tag {title: 'fwrite'})
+merge (매개변수)-[r:relates]->(지역변수)
+merge (정적할당)-[:relates]->(지역변수)
+merge (함수)-[:relates]->(지역변수)
+merge (LIFO)-[:relates]->(지역변수)
+merge (지역변수)-[:relates]->(매개변수)
+merge (정적할당)-[:relates]->(매개변수)
+merge (함수)-[:relates]->(매개변수)
+merge (LIFO)-[:relates]->(매개변수)
+merge (지역변수)-[:relates]->(정적할당)
+merge (매개변수)-[:relates]->(정적할당)
+merge (함수)-[:relates]->(정적할당)
+merge (LIFO)-[:relates]->(정적할당)
