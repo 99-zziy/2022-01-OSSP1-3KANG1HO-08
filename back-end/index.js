@@ -10,6 +10,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { Feed } = require("./models/Feed");
 const neo4j = require("neo4j-driver");
+const driver = neo4j.driver(
+  "bolt://localhost:7687",
+  neo4j.auth.basic("neo4j", "1234")
+);
+const session = driver.session();
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -72,9 +77,29 @@ app.post("/users/login", async (req, res) => {
 
 //피드 생성
 app.post("/feeds", (req, res) => {
-  Feed.create(req.body, (err, feeds) => {
+  Feed.create(req.body, async (err, feeds) => {
     if (err) return res.json(err);
-
+    try {
+      const result = await session.run(
+        `MERGE (a : Tag {title: $title1})
+         MERGE(b : Tag {title: $title2})
+         MERGE(c : Tag {title: $title3})
+         MERGE(a)-[r:relates]->(b)
+         MERGE(a)-[:relates]->(c)
+         MERGE(b)-[:relates]->(c)
+         MERGE(c)-[:relates]->(b)
+         MERGE(c)-[:relates]->(a)
+         MERGE(b)-[:relates]->(a)
+         `,
+        {
+          title1: req.body.tag[0],
+          title2: req.body.tag[1],
+          title3: req.body.tag[2],
+        }
+      );
+    } finally {
+      await session.close();
+    }
     return res.status(200).send({ feeds: feeds });
   });
 });
