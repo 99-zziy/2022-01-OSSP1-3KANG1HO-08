@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
 import FeedPreview from "./FeedPreview";
@@ -6,6 +6,7 @@ import { PrimaryColor } from "../assets/color/color";
 import CloseIcon from "../assets/icon/close.png";
 import TagEvaluationModal from "./TagEvaluationModal";
 import { useNavigate } from "react-router";
+import { getFeedCorrespondTotag } from "../api/feedApi";
 
 const ModalHeader = styled.div`
   display: flex;
@@ -39,6 +40,13 @@ function TagRecommendationModal() {
   const [visible, setVisible] = useState(true);
   const [evaluationVisibile, setEvaluationVisibile] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const tagList = "if,배열,for";
+    getFeedCorrespondTotag(tagList).then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <Modal visible={visible} width={"800px"}>
