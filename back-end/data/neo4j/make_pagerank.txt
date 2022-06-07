@@ -8,3 +8,5 @@ CALL gds.articleRank.stream("Graph Name")
 yield nodeId,score
 return gds.util.asNode(nodeId).title as name,score
 order by score desc
+
+-----get pagerank by personal-----
