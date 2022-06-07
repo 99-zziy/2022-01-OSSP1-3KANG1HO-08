@@ -25,7 +25,15 @@ MATCH (문자열:Tag {title: '문자열'}),
 (fscanf:Tag {title: 'fscanf'}),
 (fprintf:Tag {title: 'fprintf'}),
 (fread:Tag {title: 'fread'}),
-(fwrite:Tag {title: 'fwrite'})
+(fwrite:Tag {title: 'fwrite'}),
+(fseek:Tag {title: 'fseek'}),
+(ftell:Tag {title: 'ftell'}),
+(feof:Tag {title: 'feof'}),
+(ferror:Tag {title: 'ferror'}),
+(fflush:Tag {title: 'fflush'}),
+(rewind:Tag {title: 'rewind'}),
+(fopen:Tag {title: 'fopen'}),
+(fclose:Tag {title: 'fclose'})
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
