@@ -7,12 +7,13 @@ import { getFeed } from "../../api/feedApi";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import { convertToRaw } from "draft-js";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const FeedMain = styled.div`
   display: flex;
   width: 60vw;
   margin: auto;
-  margin-top: 100px;
+  margin-top: ${(props) => (props.isModal ? "20px" : "100px")};
   flex-direction: column;
 `;
 
@@ -55,23 +56,38 @@ const FeedContents = styled.div`
   font-size: 16px;
 `;
 
-function Feed() {
+const ArrowLeftIcon = styled(AiOutlineArrowLeft)`
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 60px;
+`;
+
+function Feed({ isModal, feedId, onClickBack }) {
   const [feed, setFeed] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getFeed(id).then((res) => {
-      setFeed(res.feeds);
-      setUserEmail(res.userEmail);
-      console.log(feed.tag);
-    });
+    if (isModal)
+      getFeed(feedId).then((res) => {
+        setFeed(res.feeds);
+        setUserEmail(res.userEmail);
+        console.log(feed.tag);
+      });
+    else
+      getFeed(id).then((res) => {
+        setFeed(res.feeds);
+        setUserEmail(res.userEmail);
+        console.log(feed.tag);
+      });
   }, []);
 
   return (
     feed && (
-      <FeedMain>
+      <FeedMain isModal={isModal}>
+        {isModal ? <ArrowLeftIcon onClick={onClickBack}></ArrowLeftIcon> : null}
         <FeedTitle>{feed.title}</FeedTitle>
         <FeedDate>
           {`${moment(feed.createdAt).format("YYYY.MM.DD")} / ${userEmail}`}

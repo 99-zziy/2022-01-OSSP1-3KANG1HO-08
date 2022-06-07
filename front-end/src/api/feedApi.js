@@ -11,3 +11,10 @@ export const getFeed = async (id) => {
   );
   return response.data;
 };
+
+export const getFeedCorrespondTotag = async (tagList) => {
+  const response = await api.get(
+    `${process.env.REACT_APP_SERVER_URL}/tag/feeds/${tagList}`
+  );
+  return response.data;
+};
