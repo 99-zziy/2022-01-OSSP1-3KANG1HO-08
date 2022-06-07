@@ -78,18 +78,20 @@ app.post("/users/login", async (req, res) => {
 //피드 생성
 app.post("/feeds", (req, res) => {
   Feed.create(req.body, async (err, feeds) => {
+    const tagList = [];
     if (err) return res.json(err);
     try {
-      const result = await session.run(
-        `MERGE (a : Tag {title: $title1})
+      const merge = await session.run(
+        `
+         MERGE(a : Tag {title: $title1})
          MERGE(b : Tag {title: $title2})
          MERGE(c : Tag {title: $title3})
          MERGE(a)-[r:relates]->(b)
          MERGE(a)-[:relates]->(c)
          MERGE(b)-[:relates]->(c)
          MERGE(c)-[:relates]->(b)
-         MERGE(c)-[:relates]->(a)
          MERGE(b)-[:relates]->(a)
+         MERGE(c)-[:relates]->(a)
          `,
         {
           title1: req.body.tag[0],
@@ -97,10 +99,39 @@ app.post("/feeds", (req, res) => {
           title3: req.body.tag[2],
         }
       );
+
+      const makeGraph = await session.run(
+        `CALL gds.graph.project('myGraph','Tag','relates')`
+      );
+
+      const result = await session.run(
+        ` MATCH(a:Tag {title: $title1}),(b:Tag {title:$title2}),(c:Tag {title:$title3})
+          CALL gds.pageRank.stream('myGraph',{
+           maxIterations:20, 
+           dampingFactor:0.85, 
+          sourceNodes:[a,b,c]
+          })
+          YIELD nodeId, score
+          RETURN gds.util.asNode(nodeId).title as name, score
+          ORDER BY score DESC
+          LIMIT 6
+          `,
+        {
+          title1: req.body.tag[0],
+          title2: req.body.tag[1],
+          title3: req.body.tag[2],
+        }
+      );
+
+      result.records.map((record) => {
+        tagList.push(record.get("name"));
+      });
     } finally {
+      const dropGraph = await session.run(`CALL gds.graph.drop('myGraph')`);
       await session.close();
     }
-    return res.status(200).send({ feeds: feeds });
+    console.log(tagList);
+    return res.status(200).send({ feeds: feeds, tagList });
   });
 });
 
@@ -158,7 +189,6 @@ app.get("/users/auth", auth, (req, res) => {
 });
 
 app.get("/users/logout", auth, (req, res) => {
-  console.log(req);
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({ success: true });
@@ -166,7 +196,8 @@ app.get("/users/logout", auth, (req, res) => {
 });
 
 app.get("/feeds/tag/:tag", async (req, res, next) => {
-  const feed = await Feed.find({ tag: req.params.tag });
+  console.log(req.params);
+  const feed = await Feed.find({ tag: req.params.tagList });
   return res.status(200).send({ feedList: feed });
 });
 
