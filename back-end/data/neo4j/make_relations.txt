@@ -33,7 +33,14 @@ MATCH (문자열:Tag {title: '문자열'}),
 (fflush:Tag {title: 'fflush'}),
 (rewind:Tag {title: 'rewind'}),
 (fopen:Tag {title: 'fopen'}),
-(fclose:Tag {title: 'fclose'})
+(fclose:Tag {title: 'fclose'}),
+(파일입출력:Tag {title: '파일입출력'}),
+(텍스트파일:Tag {title: '텍스트파일'}),
+(이진파일:Tag {title: '이진파일'}),
+(EOF:Tag {title: 'EOF'}),
+(buffer:Tag {title: 'buffer'}),
+(printf:Tag {title: 'printf'}),
+(scanf:Tag {title: 'scanf'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
