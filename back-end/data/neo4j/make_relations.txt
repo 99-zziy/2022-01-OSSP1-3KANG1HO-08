@@ -33,7 +33,20 @@ MATCH (문자열:Tag {title: '문자열'}),
 (fflush:Tag {title: 'fflush'}),
 (rewind:Tag {title: 'rewind'}),
 (fopen:Tag {title: 'fopen'}),
-(fclose:Tag {title: 'fclose'})
+(fclose:Tag {title: 'fclose'}),
+(파일입출력:Tag {title: '파일입출력'}),
+(텍스트파일:Tag {title: '텍스트파일'}),
+(이진파일:Tag {title: '이진파일'}),
+(EOF:Tag {title: 'EOF'}),
+(buffer:Tag {title: 'buffer'}),
+(printf:Tag {title: 'printf'}),
+(scanf:Tag {title: 'scanf'}),
+(표준입출력:Tag {title: '표준입출력'}),
+(stream:Tag {title: 'stream'}),
+(구조체:Tag {title: '구조체'}),
+(지역변수:Tag {title:'지역변수'}),
+(매개변수:Tag {title:'매개변수'}),
+(정적할당:Tag {title:'정적할당'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
@@ -54,3 +67,8 @@ merge (지역변수)-[:relates]->(LIFO)
 merge (매개변수)-[:relates]->(LIFO)
 merge (정적할당)-[:relates]->(LIFO)
 merge (함수)-[:relates]->(LIFO)
+merge (free)-[:relates]->(동적할당)
+merge (realloc)-[:relates]->(동적할당)
+merge (malloc)-[:relates]->(동적할당)
+merge (calloc)-[:relates]->(동적할당)
+merge (동적할당)-[:relates]->(free)
