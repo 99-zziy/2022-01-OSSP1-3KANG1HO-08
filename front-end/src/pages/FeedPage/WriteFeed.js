@@ -88,6 +88,7 @@ function WriteFeed() {
   let editorState = EditorState.createEmpty();
   const [contents, setcontents] = useState(editorState);
   const [isTagModal, setIsTagModal] = useState(false);
+  const [recommendTagList, setRecommendTagList] = useState([]);
 
   const onEditorStateChange = (editorState) => {
     setcontents(editorState);
@@ -125,7 +126,11 @@ function WriteFeed() {
           };
           console.log(dataToSumbit);
           Write(dataToSumbit).then((res) => {
-            console.log(res);
+            console.log(res.tagList);
+            let tagList = res.tagList;
+            const inputTagList = [values.tag1, values.tag2, values.tag3];
+            tagList = tagList.filter((tag) => !inputTagList.includes(tag));
+            setRecommendTagList(tagList.slice(0, 3));
             setIsTagModal(true);
           });
           // navigate("/");
@@ -250,7 +255,11 @@ function WriteFeed() {
                 </Button>
               </Form>
             </Container>
-            {isTagModal && <TagRecommendationModal></TagRecommendationModal>}
+            {isTagModal && (
+              <TagRecommendationModal
+                recommendTagList={recommendTagList}
+              ></TagRecommendationModal>
+            )}
             {/* <Content
               dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
             /> */}
