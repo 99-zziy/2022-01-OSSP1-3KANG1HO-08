@@ -21,6 +21,7 @@ const corsOptions = {
   credentials: true,
 };
 
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -132,6 +133,7 @@ app.post("/feeds", (req, res) => {
     }
     console.log(tagList);
     return res.status(200).send({ feeds: feeds, tagList });
+
   });
 });
 
@@ -195,10 +197,19 @@ app.get("/users/logout", auth, (req, res) => {
   });
 });
 
-app.get("/feeds/tag/:tag", async (req, res, next) => {
-  console.log(req.params);
-  const feed = await Feed.find({ tag: req.params.tagList });
-  return res.status(200).send({ feedList: feed });
+
+app.get("/tag/feeds/:tagList", async (req, res) => {
+  console.log(req.params.tagList);
+
+  let data = [];
+  const tagList = req.params.tagList.split(",");
+  await Promise.all(
+    tagList.map(async (tagName) => {
+      const feed = await Feed.find({ tag: tagName });
+      return data.push({ tagName, feed });
+    })
+  );
+  return res.status(200).send({ data: data });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

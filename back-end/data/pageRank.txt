@@ -1,9 +1,0 @@
-call gds.graph.project('myGraph','Tag','relates')
-
-call gds.pageRank.stream("myGraph",{
-    maxIterations:20,
-    dampingFactor:0.85
-})
-yield nodeId,score
-return gds.util.asNode(nodeId).title as name,score
-order by score desc

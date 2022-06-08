@@ -65,11 +65,20 @@ const Like = styled.div`
   color: ${PrimaryColor};
 `;
 
-function FeedPreview({ id, title, content, date, likeCount, isModal }) {
+function FeedPreview({
+  id,
+  title,
+  content,
+  date,
+  likeCount,
+  isModal,
+  onModalFeedClick,
+}) {
   const navigate = useNavigate();
 
   const onFeedClick = () => {
-    navigate(`/feed/${id}`);
+    if (!isModal) navigate(`/feed/${id}`);
+    else onModalFeedClick();
   };
 
   // api 통신 코드 추가하면 실제 데이터 넣을 것, 지금은 더미 데이터
