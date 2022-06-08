@@ -38,9 +38,14 @@ const ModalText = styled.p`
   text-align: center;
 `;
 
-function TagRecommendationModal() {
+const EmptyFeedText = styled.p`
+  font-size: 14px;
+  text-align: center;
+  color: gray;
+`;
+
+function TagRecommendationModal({ recommendTagList }) {
   const [visible, setVisible] = useState(true);
-  const [tagList, setTagList] = useState("if,배열,for");
   const [feedList, setFeedList] = useState(null);
   const [feedId, setFeedId] = useState(null);
   const [isFeedClick, setIsFeedClick] = useState(false);
@@ -48,7 +53,8 @@ function TagRecommendationModal() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getFeedCorrespondTotag(tagList).then((res) => {
+    console.log(recommendTagList);
+    getFeedCorrespondTotag(recommendTagList).then((res) => {
       setFeedList(res.data);
     });
   }, []);
@@ -77,13 +83,17 @@ function TagRecommendationModal() {
         </ModalHeader>
         {feedList &&
           feedList.map((feed) => {
-            console.log(feed);
+            console.log(feed.feed.length);
             return (
               <>
                 <Tag>{`#${feed.tagName}`}</Tag>
                 <FeedContainer>
-                  {feed.feed &&
-                    feed.feed.map((feedData) => {
+                  {feed.feed.length === 0 ? (
+                    <EmptyFeedText>
+                      {"해당 태그와 관련된 피드가 없습니다."}
+                    </EmptyFeedText>
+                  ) : (
+                    feed.feed.splice(0, 3).map((feedData) => {
                       // console.log(feedList[0]);
                       const date = moment(feedData.createdAt).format(
                         "YYYY.MM.DD"
@@ -101,7 +111,8 @@ function TagRecommendationModal() {
                           }
                         ></FeedPreview>
                       );
-                    })}
+                    })
+                  )}
                 </FeedContainer>
               </>
             );
