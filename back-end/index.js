@@ -34,6 +34,10 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
+// app.use(require("./routes/users"))
+// app.use(require("./routes/feeds"))
+// app.use(require("./routes/tags"))
+
 app.post("/users/signup", (req, res) => {
   // 회원 가입할 때 넣는 정보들을 user에서 가져오면
   // 그것들을 데이터베이스에 넣어준다.
@@ -137,13 +141,7 @@ app.post("/feeds", (req, res) => {
   });
 });
 
-//필요 없는부분?
-app.get("/feeds/:id/edit", (req, res) => {
-  Feed.findOne({ _id: req.params.id }, (err, feed) => {
-    if (err) return res.json(err);
-  });
-});
-//
+
 //피드 수정
 app.put("/feeds/:id", (req, res) => {
   req.body.updateAt = Date.now();
@@ -213,3 +211,5 @@ app.get("/tag/feeds/:tagList", async (req, res) => {
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+app.get("/")
