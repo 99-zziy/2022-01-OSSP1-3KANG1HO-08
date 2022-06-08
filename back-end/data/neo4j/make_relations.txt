@@ -41,6 +41,12 @@ MATCH (문자열:Tag {title: '문자열'}),
 (buffer:Tag {title: 'buffer'}),
 (printf:Tag {title: 'printf'}),
 (scanf:Tag {title: 'scanf'}),
+(표준입출력:Tag {title: '표준입출력'}),
+(stream:Tag {title: 'stream'}),
+(구조체:Tag {title: '구조체'}),
+(지역변수:Tag {title:'지역변수'}),
+(매개변수:Tag {title:'매개변수'}),
+(정적할당:Tag {title:'정적할당'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
