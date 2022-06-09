@@ -63,6 +63,12 @@ MATCH (문자열:Tag {title: '문자열'}),
 (heap:Tag {title:'heap'}),
 (메모리누수:Tag {title:'메모리누수'}),
 (메모리:Tag {title:'메모리'}),
+(오버플로우:Tag {title:'오버플로우'}),
+(언더플로우:Tag {title:'언더플로우'}),
+(DanglingPointer:Tag {title:'DanglingPointer'}),
+(char:Tag {title: 'char'}),
+(long:Tag {title: 'long'}),
+(int:Tag {title: 'int'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
