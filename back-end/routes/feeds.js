@@ -70,7 +70,6 @@ router.post("/feeds", (req, res) => {
     });
   });
   
-  
   //피드 수정
   router.put("/feeds/:id", (req, res) => {
     req.body.updateAt = Date.now();
@@ -107,6 +106,7 @@ router.post("/feeds", (req, res) => {
         return res.status(200).send({ feeds: feeds });
       });
   });
+
   
   //피드 태그 불러오기
   router.get("/feeds/tag/:tag", async(req, res, next)=>{
