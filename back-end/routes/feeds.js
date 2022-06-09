@@ -3,7 +3,8 @@ const { User } = require("../models/User");
 const { Feed } = require("../models/Feed");
 const router = express.Router();
 
-router.post("/feeds", (req, res) => {
+  //피드 생성
+  router.post("/feeds", (req, res) => {
 
     Feed.create(req.body, (err, feeds) => {
       if (err) return res.json(err);
@@ -39,6 +40,7 @@ router.post("/feeds", (req, res) => {
       if (err) return res.json(err);
     });
   });
+
   //피드 전체 리스트
   router.get('/feeds', (req, res) => {
     Feed.find({})
@@ -48,6 +50,8 @@ router.post("/feeds", (req, res) => {
         return res.status(200).send({ feeds: feeds });
       });
   });
+
+  
   router.get("/feeds/tag/:tag", async(req, res, next)=>{
     const feed = await Feed.find({tag : req.params.tag})
     if(!feed) return res.json(err);
