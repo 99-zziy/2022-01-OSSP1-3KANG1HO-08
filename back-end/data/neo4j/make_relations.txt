@@ -47,6 +47,28 @@ MATCH (문자열:Tag {title: '문자열'}),
 (지역변수:Tag {title:'지역변수'}),
 (매개변수:Tag {title:'매개변수'}),
 (정적할당:Tag {title:'정적할당'}),
+(함수:Tag {title:'함수'}),
+(LIFO:Tag {title:'LIFO'}),
+(동적할당:Tag {title:'동적할당'}),
+(free:Tag {title:'free'}),
+(realloc:Tag {title:'realloc'}),
+(malloc:Tag {title:'malloc'}),
+(calloc:Tag {title:'calloc'}),
+(memoryh:Tag {title:'memoryh'}),
+(라이브러리:Tag {title:'라이브러리'}),
+(code:Tag {title:'code'}),
+(data:Tag {title:'data'}),
+(stack:Tag {title:'stack'}),
+(메모리할당:Tag {title:'메모리할당'}),
+(heap:Tag {title:'heap'}),
+(메모리누수:Tag {title:'메모리누수'}),
+(메모리:Tag {title:'메모리'}),
+(오버플로우:Tag {title:'오버플로우'}),
+(언더플로우:Tag {title:'언더플로우'}),
+(DanglingPointer:Tag {title:'DanglingPointer'}),
+(char:Tag {title: 'char'}),
+(long:Tag {title: 'long'}),
+(int:Tag {title: 'int'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
@@ -72,3 +94,22 @@ merge (realloc)-[:relates]->(동적할당)
 merge (malloc)-[:relates]->(동적할당)
 merge (calloc)-[:relates]->(동적할당)
 merge (동적할당)-[:relates]->(free)
+merge (realloc)-[:relates]->(free)
+merge (malloc)-[:relates]->(free)
+merge (calloc)-[:relates]->(free)
+merge (동적할당)-[:relates]->(realloc)
+merge (free)-[:relates]->(realloc)
+merge (malloc)-[:relates]->(realloc)
+merge (calloc)-[:relates]->(realloc)
+merge (동적할당)-[:relates]->(malloc)
+merge (free)-[:relates]->(malloc)
+merge (realloc)-[:relates]->(malloc)
+merge (calloc)-[:relates]->(malloc)
+merge (동적할당)-[:relates]->(calloc)
+merge (free)-[:relates]->(calloc)
+merge (realloc)-[:relates]->(calloc)
+merge (malloc)-[:relates]->(calloc)
+merge (지역변수)-[:relates]->(stack)
+merge (매개변수)-[:relates]->(stack)
+merge (정적할당)-[:relates]->(stack)
+merge (함수)-[:relates]->(stack)
