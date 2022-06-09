@@ -56,6 +56,13 @@ MATCH (문자열:Tag {title: '문자열'}),
 (calloc:Tag {title:'calloc'}),
 (memoryh:Tag {title:'memoryh'}),
 (라이브러리:Tag {title:'라이브러리'}),
+(code:Tag {title:'code'}),
+(data:Tag {title:'data'}),
+(stack:Tag {title:'stack'}),
+(메모리할당:Tag {title:'메모리할당'}),
+(heap:Tag {title:'heap'}),
+(메모리누수:Tag {title:'메모리누수'}),
+(메모리:Tag {title:'메모리'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
