@@ -69,6 +69,13 @@ MATCH (문자열:Tag {title: '문자열'}),
 (char:Tag {title: 'char'}),
 (long:Tag {title: 'long'}),
 (int:Tag {title: 'int'}),
+(정수형변수:Tag {title: '정수형변수'}),
+(bit:Tag {title: 'bit'}),
+(byte:Tag {title: 'byte'}),
+(float:Tag {title: 'float'}),
+(double:Tag {title: 'double'}),
+(실수형변수:Tag {title: '실수형변수'}),
+(멤버변수:Tag {title: '멤버변수'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
@@ -113,3 +120,19 @@ merge (지역변수)-[:relates]->(stack)
 merge (매개변수)-[:relates]->(stack)
 merge (정적할당)-[:relates]->(stack)
 merge (함수)-[:relates]->(stack)
+merge (LIFO)-[:relates]->(stack)
+merge (realloc)-[:relates]->(memoryh)
+merge (malloc)-[:relates]->(memoryh)
+merge (calloc)-[:relates]->(memoryh)
+merge (동적할당)-[:relates]->(메모리할당)
+merge (free)-[:relates]->(메모리할당)
+merge (realloc)-[:relates]->(메모리할당)
+merge (malloc)-[:relates]->(메모리할당)
+merge (calloc)-[:relates]->(메모리할당)
+merge (memoryh)-[:relates]->(라이브러리)
+merge (data)-[:relates]->(code)
+merge (stack)-[:relates]->(code)
+merge (메모리할당)-[:relates]->(code)
+merge (heap)-[:relates]->(code)
+merge (code)-[:relates]->(data)
+merge (stack)-[:relates]->(data)
