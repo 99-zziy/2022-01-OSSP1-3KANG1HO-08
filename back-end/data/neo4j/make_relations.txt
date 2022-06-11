@@ -69,6 +69,13 @@ MATCH (문자열:Tag {title: '문자열'}),
 (char:Tag {title: 'char'}),
 (long:Tag {title: 'long'}),
 (int:Tag {title: 'int'}),
+(정수형변수:Tag {title: '정수형변수'}),
+(bit:Tag {title: 'bit'}),
+(byte:Tag {title: 'byte'}),
+(float:Tag {title: 'float'}),
+(double:Tag {title: 'double'}),
+(실수형변수:Tag {title: '실수형변수'}),
+(멤버변수:Tag {title: '멤버변수'}),
 merge (매개변수)-[r:relates]->(지역변수)
 merge (정적할당)-[:relates]->(지역변수)
 merge (함수)-[:relates]->(지역변수)
