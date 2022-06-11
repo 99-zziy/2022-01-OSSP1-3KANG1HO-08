@@ -126,3 +126,6 @@
 
 
 
+### - BE
+**|-- models => 데이터 스키마 관리 <br />
+  |-- middleware => auth 정보 관리 <br />
