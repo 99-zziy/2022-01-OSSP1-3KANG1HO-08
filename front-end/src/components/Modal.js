@@ -53,6 +53,7 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 20px 40px 40px;
+  min-height: 300px;
 `;
 
 Modal.propTypes = {
