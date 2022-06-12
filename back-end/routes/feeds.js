@@ -9,10 +9,12 @@ const driver = neo4j.driver(
 );
 const session = driver.session();
 
+
 //피드 생성
 router.post("/feeds", (req, res) => {
     Feed.create(req.body, async (err, feeds) => {
       const tagList = [];
+
       if (err) return res.json(err);
       try {
         const merge = await session.run(
