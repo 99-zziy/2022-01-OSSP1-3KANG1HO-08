@@ -11,15 +11,16 @@ const userSchema = mongoose.Schema({
         trim:true,
         unique: 1 
     },
+    // user 이메일 
     password: {
         type: String,
         minlength: 5
     },
-    
+    // user password 최소 입력값 5줄
     tokenExp :{
         type: Number
     },
-    
+    // user token 생성
 },
 { timestamps: true })
 
@@ -52,8 +53,6 @@ userSchema.methods.comparePassword = function(plainPassword,cb){
 
 userSchema.methods.generateToken = function(cb) {
     var user = this;
-    // console.log('user',user)
-    // console.log('userSchema', userSchema)
     var token =  jwt.sign(user._id.toHexString(),'secret')
     var oneHour = moment().add(1, 'hour').valueOf();
 
