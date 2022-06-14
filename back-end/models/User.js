@@ -43,6 +43,7 @@ userSchema.pre('save', function( next ) {
         next()
     }
 });
+// user 비밀번호 변경
 
 userSchema.methods.comparePassword = function(plainPassword,cb){
     bcrypt.compare(plainPassword, this.password, function(err, isMatch){
@@ -50,6 +51,7 @@ userSchema.methods.comparePassword = function(plainPassword,cb){
         cb(null, isMatch)
     })
 }
+// user 비밀번호 확인
 
 userSchema.methods.generateToken = function(cb) {
     var user = this;
