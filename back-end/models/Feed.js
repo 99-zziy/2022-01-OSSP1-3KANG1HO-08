@@ -11,9 +11,12 @@ const feedSchema = mongoose.Schema(
     title: {
       type: String,
     },
+    // 게시물 제목
+
     contents: {
       type: String,
     },
+    // 게시물 내용
     tag: {
       type: Array,
     },
