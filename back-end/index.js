@@ -12,13 +12,10 @@ const driver = neo4j.driver(
   neo4j.auth.basic("neo4j", "1234")
 );
 const session = driver.session();
-
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
 };
-
-
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
