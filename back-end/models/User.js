@@ -65,7 +65,7 @@ userSchema.methods.generateToken = function(cb) {
         cb(null, user);
     })
 }
-
+// user token생성
 userSchema.statics.findByToken = function (token, cb) {
     var user = this;
 
@@ -76,6 +76,7 @@ userSchema.statics.findByToken = function (token, cb) {
         })
     })
 }
+// user token 매치
 
 const User = mongoose.model('User', userSchema);
 
