@@ -11,15 +11,16 @@ const userSchema = mongoose.Schema({
         trim:true,
         unique: 1 
     },
+    // user 이메일 
     password: {
         type: String,
         minlength: 5
     },
-    
+    // user password 최소 입력값 5줄
     tokenExp :{
         type: Number
     },
-    
+    // user token 생성
 },
 { timestamps: true })
 
@@ -42,6 +43,7 @@ userSchema.pre('save', function( next ) {
         next()
     }
 });
+// user 비밀번호 변경
 
 userSchema.methods.comparePassword = function(plainPassword,cb){
     bcrypt.compare(plainPassword, this.password, function(err, isMatch){
@@ -49,11 +51,10 @@ userSchema.methods.comparePassword = function(plainPassword,cb){
         cb(null, isMatch)
     })
 }
+// user 비밀번호 확인
 
 userSchema.methods.generateToken = function(cb) {
     var user = this;
-    // console.log('user',user)
-    // console.log('userSchema', userSchema)
     var token =  jwt.sign(user._id.toHexString(),'secret')
     var oneHour = moment().add(1, 'hour').valueOf();
 
@@ -64,7 +65,7 @@ userSchema.methods.generateToken = function(cb) {
         cb(null, user);
     })
 }
-
+// user token생성
 userSchema.statics.findByToken = function (token, cb) {
     var user = this;
 
@@ -75,6 +76,7 @@ userSchema.statics.findByToken = function (token, cb) {
         })
     })
 }
+// user token 매치
 
 const User = mongoose.model('User', userSchema);
 
