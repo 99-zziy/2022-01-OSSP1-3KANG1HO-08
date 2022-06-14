@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Feed } = require("../models/Feed");
 
-// tag리스트 불러오기
+// tag 리스트 불러오기
 router.get("/tag/feeds/:tagList", async (req, res) => {
     console.log(req.params.tagList);
   
