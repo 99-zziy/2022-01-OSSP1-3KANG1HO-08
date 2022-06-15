@@ -48,12 +48,11 @@ const ModalInner = styled.div`
   border-radius: 10px;
   width: ${(props) => props.width};
   overflow: auto;
-  max-height: 700px;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 20px 40px 40px;
-  min-height: 300px;
+  height: 600px;
 `;
 
 Modal.propTypes = {

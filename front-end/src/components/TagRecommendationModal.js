@@ -5,10 +5,10 @@ import FeedPreview from "./FeedPreview";
 import Feed from "../pages/FeedPage/Feed";
 import { PrimaryColor } from "../assets/color/color";
 import CloseIcon from "../assets/icon/close.png";
-import TagEvaluationModal from "./TagEvaluationModal";
 import { useNavigate } from "react-router";
 import { getFeedCorrespondTotag } from "../api/feedApi";
 import moment from "moment";
+import Loading from "./Loading";
 
 const ModalHeader = styled.div`
   display: flex;
@@ -49,13 +49,16 @@ function TagRecommendationModal({ recommendTagList }) {
   const [feedList, setFeedList] = useState(null);
   const [feedId, setFeedId] = useState(null);
   const [isFeedClick, setIsFeedClick] = useState(false);
-  const [evaluationVisibile, setEvaluationVisibile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     console.log(recommendTagList);
+
     getFeedCorrespondTotag(recommendTagList).then((res) => {
-      setFeedList(res.data);
+      setFeedList(JSON.stringify(res.data));
+      setIsLoading(false);
+      console.log(JSON.stringify(res.data));
     });
   }, []);
 
@@ -77,13 +80,14 @@ function TagRecommendationModal({ recommendTagList }) {
           <CloseButton
             src={CloseIcon}
             onClick={() => {
-              setEvaluationVisibile(true);
+              setVisible(false);
+              navigate("/");
             }}
           ></CloseButton>
         </ModalHeader>
-        {feedList &&
-          feedList.map((feed) => {
-            console.log(feed.feed.length);
+        {JSON.parse(feedList) &&
+          JSON.parse(feedList).map((feed) => {
+            console.log(feed.feed);
             return (
               <>
                 <Tag>{`#${feed.tagName}`}</Tag>
@@ -132,17 +136,12 @@ function TagRecommendationModal({ recommendTagList }) {
   };
 
   return (
-    <Modal visible={visible} width={"800px"}>
-      {isFeedClick ? FeedView() : TagRecommend()}
-      <TagEvaluationModal
-        visible={evaluationVisibile}
-        onModalClose={() => {
-          setEvaluationVisibile(false);
-          setVisible(false);
-          navigate("/");
-        }}
-      />
-    </Modal>
+    <>
+      <Modal visible={visible} width={"800px"}>
+        {isFeedClick ? FeedView() : TagRecommend()}
+        {isLoading ? <Loading></Loading> : null}
+      </Modal>
+    </>
   );
 }
 

@@ -14,6 +14,7 @@ router.get("/tag/feeds/:tagList", async (req, res) => {
         return data.push({ tagName, feed });
       })
     );
+    console.log(JSON.stringify(data))
     return res.status(200).send({ data: data });
   });
 

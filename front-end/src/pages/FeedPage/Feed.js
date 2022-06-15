@@ -15,6 +15,7 @@ const FeedMain = styled.div`
   margin: auto;
   margin-top: ${(props) => (props.isModal ? "20px" : "100px")};
   flex-direction: column;
+  height: 600px;
 `;
 
 const FeedTitle = styled.div`
