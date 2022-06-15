@@ -15,15 +15,20 @@
 ## ✨ Main Feat
 
 - **`회원가입 & 로그인`**
-<img src="https://user-images.githubusercontent.com/59119468/167071531-8c951a4e-6015-4f9d-b7e3-86fb953ba074.png" width="800" height="400"/>
-<img src="https://user-images.githubusercontent.com/59119468/167071538-5d723bae-e853-473d-b695-c443da81332c.png" width="800" height="400"/>
+<img width="1440" src="https://user-images.githubusercontent.com/59119468/173852143-da67df87-cd72-4cb5-a738-17b43193e613.png">
+<img width="1440" src="https://user-images.githubusercontent.com/59119468/173852305-c5af6462-eedf-47a9-9d2b-8fac5a477e86.png">
 
-- **`글 업로드 & 좋아요`**   
-<img src="https://user-images.githubusercontent.com/59119468/167635548-0e5a2669-c15f-4e38-88cd-16f0e1c855d0.png" width="800" height="400"/>
-<img src="https://user-images.githubusercontent.com/59119468/167635543-75d69e38-3ded-40fd-b205-99535909f907.png" width="800" height="400"/>
+- **`메인 화면`**
 
-- **`공부자료 추천`**  
-<img src="https://user-images.githubusercontent.com/59119468/167635537-36bfee73-649b-4ec1-8424-f2119ea2f49b.png" width="800" height="400"/>
+
+- **`글 작성 페이지`**   
+<img width="1440" src="https://user-images.githubusercontent.com/59119468/173852488-1e0fa472-3f83-4b24-b69b-0c68ca026cd9.png">
+
+- **`공부자료 추천 모달`**  
+<img width="779" src="https://user-images.githubusercontent.com/59119468/173852417-7521143b-092f-49ca-9097-28e40a0f1517.png">
+
+- **`작성된 게시물 페이지`**
+<img width="1438" alt="스크린샷 2022-06-15 오후 5 29 24" src="https://user-images.githubusercontent.com/59119468/173852564-8b5537eb-38ec-47ac-938d-38ef7f078db2.png">
 
 ## ✨ Database
 
