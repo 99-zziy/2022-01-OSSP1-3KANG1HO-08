@@ -15,25 +15,25 @@
 ## ✨ Main Feat
 
 - **`회원가입 & 로그인`**
-<img width="800" height="400" src="https://user-images.githubusercontent.com/59119468/173852143-da67df87-cd72-4cb5-a738-17b43193e613.png">
-<img width="800" height="400" src="https://user-images.githubusercontent.com/59119468/173852305-c5af6462-eedf-47a9-9d2b-8fac5a477e86.png">
+<img width="600" height="300" src="https://user-images.githubusercontent.com/59119468/173852143-da67df87-cd72-4cb5-a738-17b43193e613.png">
+<img width="600" height="300" src="https://user-images.githubusercontent.com/59119468/173852305-c5af6462-eedf-47a9-9d2b-8fac5a477e86.png">
 
 - **`메인 화면`**
-<img width="800" height="400" src="https://user-images.githubusercontent.com/59119468/173856288-b4e31f9f-b8a2-449f-aab4-e8c257ad1637.png">
+<img width="600" height="300" src="https://user-images.githubusercontent.com/59119468/173856288-b4e31f9f-b8a2-449f-aab4-e8c257ad1637.png">
 
 - **`글 작성 페이지`**   
-<img width="800" height="400" src="https://user-images.githubusercontent.com/59119468/173852488-1e0fa472-3f83-4b24-b69b-0c68ca026cd9.png">
+<img width="600" height="300" src="https://user-images.githubusercontent.com/59119468/173852488-1e0fa472-3f83-4b24-b69b-0c68ca026cd9.png">
 
 - **`공부자료 추천 모달`**  
-<img width="800" height="400" src="https://user-images.githubusercontent.com/59119468/173852417-7521143b-092f-49ca-9097-28e40a0f1517.png">
+<img width="600" height="400" src="https://user-images.githubusercontent.com/59119468/173852417-7521143b-092f-49ca-9097-28e40a0f1517.png">
 
 - **`작성된 게시물 페이지`**
-<img width="800" height="400" alt="스크린샷 2022-06-15 오후 5 29 24" src="https://user-images.githubusercontent.com/59119468/173852564-8b5537eb-38ec-47ac-938d-38ef7f078db2.png">
+<img width="600" height="300" alt="스크린샷 2022-06-15 오후 5 29 24" src="https://user-images.githubusercontent.com/59119468/173852564-8b5537eb-38ec-47ac-938d-38ef7f078db2.png">
 
 ## ✨ Database
 
 - **`Neo4j DB`**
-<img src="https://user-images.githubusercontent.com/84655070/173525263-c30f2721-e5c9-4532-8938-504a57914e8f.png" width="800" height="400"/>
+<img src="https://user-images.githubusercontent.com/84655070/173525263-c30f2721-e5c9-4532-8938-504a57914e8f.png" width="700" height="400"/>
 
 
 <br /> 
