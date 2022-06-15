@@ -17,11 +17,13 @@ const feedSchema = mongoose.Schema(
       type: String,
     },
     // 게시물 내용
+    
     tag: {
       type: Array,
     },
   },
   { timestamps: true }
+  //게시물 작성 시간 기록
 );
 
 const Feed = mongoose.model("Feed", feedSchema);

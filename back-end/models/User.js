@@ -66,6 +66,7 @@ userSchema.methods.generateToken = function(cb) {
     })
 }
 // user token생성
+
 userSchema.statics.findByToken = function (token, cb) {
     var user = this;
 
