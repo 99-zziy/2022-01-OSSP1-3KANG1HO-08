@@ -17,6 +17,7 @@ router.post("/feeds", (req, res) => {
     if (err) return res.json(err);
     try {
       const merge = await session.run(
+        //neo4j tag relation 생성
         `
            MERGE(a : Tag {title: $title1})
            MERGE(b : Tag {title: $title2})
@@ -35,10 +36,11 @@ router.post("/feeds", (req, res) => {
         }
       );
 
+      //neo4j에서 graph 생성
       const makeGraph = await session.run(
         `CALL gds.graph.project('myGraph','Tag','relates')`
       );
-
+      //pagerank를 통한 추천도 검색
       const result = await session.run(
         ` MATCH(a:Tag {title: $title1}),(b:Tag {title:$title2}),(c:Tag {title:$title3})
             CALL gds.pageRank.stream('myGraph',{
