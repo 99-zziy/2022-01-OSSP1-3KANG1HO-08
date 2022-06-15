@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Feed } = require("../models/Feed");
 
-
+// tag 리스트 불러오기
 router.get("/tag/feeds/:tagList", async (req, res) => {
     console.log(req.params.tagList);
   
@@ -17,5 +17,6 @@ router.get("/tag/feeds/:tagList", async (req, res) => {
     console.log(JSON.stringify(data))
     return res.status(200).send({ data: data });
   });
+  
 
   module.exports = router

@@ -25,6 +25,11 @@
 - **`공부자료 추천`**  
 <img src="https://user-images.githubusercontent.com/59119468/167635537-36bfee73-649b-4ec1-8424-f2119ea2f49b.png" width="800" height="400"/>
 
+## ✨ Database
+
+- **`Neo4j DB`**
+<img src="https://user-images.githubusercontent.com/84655070/173525263-c30f2721-e5c9-4532-8938-504a57914e8f.png" width="800" height="400"/>
+
 
 <br /> 
 
@@ -119,13 +124,8 @@
    |-- constants => 상수(매직넘버)  <br />
    |-- assets => 프로젝트에 쓸 font, image 등 <br />**
 ### - BE
-   |-- models => 데이터 스키마 관리 <br />
+ **|-- models => 데이터 스키마 관리 <br />
    |-- middleware => auth 정보 관리 <br />
    |-- data => neo4j 데이터(노드,릴레이션) 관리 <br />
-   |-- routes => router 관리 <br />
+   |-- routes => router 관리 <br />**
 
-
-
-### - BE
-**|-- models => 데이터 스키마 관리 <br />
-  |-- middleware => auth 정보 관리 <br />
