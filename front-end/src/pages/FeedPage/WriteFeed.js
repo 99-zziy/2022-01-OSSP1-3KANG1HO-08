@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { PrimaryColor } from "../../assets/color/color";
 import { Write } from "../../api/authApi";
 import TagRecommendationModal from "../../components/TagRecommendationModal";
+import Loading from "../../components/Loading";
 
 const Container = styled.div`
   display: flex;
@@ -89,6 +90,7 @@ function WriteFeed() {
   const [contents, setcontents] = useState(editorState);
   const [isTagModal, setIsTagModal] = useState(false);
   const [recommendTagList, setRecommendTagList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onEditorStateChange = (editorState) => {
     setcontents(editorState);
@@ -118,6 +120,7 @@ function WriteFeed() {
         contents: Yup.string().required("내용은 필수 입력 항목입니다."),
       })}
       onSubmit={(values, { setSubmitting }) => {
+        setIsLoading(true);
         setTimeout(() => {
           let dataToSumbit = {
             title: values.title,
@@ -132,6 +135,7 @@ function WriteFeed() {
             tagList = tagList.filter((tag) => !inputTagList.includes(tag));
             setRecommendTagList(tagList.slice(0, 3));
             setIsTagModal(true);
+            setIsLoading(false);
           });
           // navigate("/");
           setSubmitting(false);
@@ -263,6 +267,7 @@ function WriteFeed() {
             {/* <Content
               dangerouslySetInnerHTML={{ __html: editorToHtml(contents) }}
             /> */}
+            {isLoading ? <Loading></Loading> : null}
           </div>
         );
       }}
