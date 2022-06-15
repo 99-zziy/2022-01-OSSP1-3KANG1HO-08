@@ -17,6 +17,7 @@ const feedSchema = mongoose.Schema(
       type: String,
     },
     // 게시물 내용
+    
     tag: {
       type: Array,
     },
